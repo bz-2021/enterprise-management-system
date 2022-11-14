@@ -28,4 +28,5 @@ public class Employee {
     private String password;
     private Integer department;
     private String status;
+    private Integer level;
 }

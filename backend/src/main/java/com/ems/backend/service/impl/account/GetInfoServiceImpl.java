@@ -12,6 +12,7 @@ public class GetInfoServiceImpl implements com.ems.backend.service.account.GetIn
     @Override
     public Map<String, String> getInfo() {
         Employee employee = AuthorizationUtil.getEmployee();
+
         Map<String,String> data = new HashMap<>();
         data.put("error_message", "success");
         data.put("id", employee.getId().toString());
