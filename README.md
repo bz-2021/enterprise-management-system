@@ -26,3 +26,42 @@ create table employee
         unique (id)
 );
 ```
+###接口文档
+####登录
+http请求方式: POST
+
+| 参数 | 说明 |
+| :---:| :---: |
+| name | 姓名 |
+| password | 密码 |
+
+返回参数
+
+| 参数 | 说明 |
+| :---:| :---: |
+| error_message | success：成功 |
+| token | token数据 |
+
+####注册
+http请求方式: POST
+
+| 参数 | 说明 |
+| :---:| :---: |
+| name | 姓名 |
+| gender | 密码 |
+| ethnicity | 民族 |
+| birthday | 生日（格式为yy-MM-dd） |
+| politicalFace | 政治面貌 |
+| education | 文化程度 |
+| idCard | 身份证号 |
+| phoneNumber | 手机号 |
+| department | 部门 |
+| password | 密码 |
+| confirmedPassword | 确认密码 |
+
+返回参数
+
+| 参数 | 说明 |
+| :---:| :---: |
+| error_message | success：成功 |
+
