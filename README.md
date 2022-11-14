@@ -37,6 +37,7 @@ create table employee
 #### 登录 ####
 
 http请求方式: POST
+URL:http://localhost:8082/employee/token/
 
 | 参数 | 说明 |
 | :---:| :---: |
@@ -53,6 +54,7 @@ http请求方式: POST
 #### 注册 ####
 
 http请求方式: POST
+URL:http://localhost:8082/employee/register/
 
 | 参数 | 说明 |
 | :---:| :---: |
