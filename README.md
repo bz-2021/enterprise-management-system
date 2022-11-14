@@ -1,8 +1,13 @@
 ###后端配置
+
 #####Java版本：11
+
 #####数据库：MySQL80
+
 #####用户名：`root`  密码：`123456`
+
 #####端口：`8082`
+
 建立Employee表：
 ```
 create table employee
@@ -26,8 +31,11 @@ create table employee
         unique (id)
 );
 ```
+
 ###接口文档
+
 ####登录
+
 http请求方式: POST
 
 | 参数 | 说明 |
@@ -43,6 +51,7 @@ http请求方式: POST
 | token | token数据 |
 
 ####注册
+
 http请求方式: POST
 
 | 参数 | 说明 |
