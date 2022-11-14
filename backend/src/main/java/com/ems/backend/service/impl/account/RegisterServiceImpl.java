@@ -37,8 +37,9 @@ public class RegisterServiceImpl implements com.ems.backend.service.account.Regi
                                         String password,
                                         String confirmedPassword) throws ParseException {
         Map<String, String> map = new HashMap<>();
+
         if(name == null){
-            map.put("error_messsage", "姓名不能为空");
+            map.put("error_message", "姓名不能为空");
             return map;
         }
         if(password == null || confirmedPassword == null){

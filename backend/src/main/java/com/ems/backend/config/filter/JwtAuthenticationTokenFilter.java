@@ -1,7 +1,7 @@
 package com.ems.backend.config.filter;
 import com.ems.backend.mapper.EmployeeMapper;
 import com.ems.backend.pojo.Employee;
-import com.ems.backend.service.impl.utils.EmployeeDetailsImpl;
+import com.ems.backend.service.impl.utils.UserDetailsImpl;
 import com.ems.backend.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import org.jetbrains.annotations.NotNull;
@@ -48,7 +48,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             throw new RuntimeException("用户名未登录");
         }
 
-        EmployeeDetailsImpl loginUser = new EmployeeDetailsImpl(employee);
+        UserDetailsImpl loginUser = new UserDetailsImpl(employee);
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginUser, null, null);
 

@@ -6,7 +6,7 @@
 
 ##### 用户名：`root`  密码：`123456` #####
 
-##### 端口：`8082` #####
+##### 端口：`8083` #####
 
 建立Employee表：
 ```
@@ -37,7 +37,8 @@ create table employee
 #### 登录 ####
 
 http请求方式: POST
-URL:http://localhost:8082/employee/token/
+
+URL: http://localhost:8083/employee/token/
 
 | 参数 | 说明 |
 | :---:| :---: |
@@ -54,14 +55,15 @@ URL:http://localhost:8082/employee/token/
 #### 注册 ####
 
 http请求方式: POST
-URL:http://localhost:8082/employee/register/
+
+URL: http://localhost:8083/employee/register/
 
 | 参数 | 说明 |
 | :---:| :---: |
 | name | 姓名 |
 | gender | 密码 |
 | ethnicity | 民族 |
-| birthday | 生日（格式为yy-MM-dd） |
+| birthday | 生日（格式为yyyy-MM-dd） |
 | politicalFace | 政治面貌 |
 | education | 文化程度 |
 | idCard | 身份证号 |

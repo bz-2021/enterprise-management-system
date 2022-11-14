@@ -1,7 +1,7 @@
 package com.ems.backend.service.impl.account;
 
 import com.ems.backend.pojo.Employee;
-import com.ems.backend.service.impl.utils.EmployeeDetailsImpl;
+import com.ems.backend.service.impl.utils.UserDetailsImpl;
 import com.ems.backend.utils.JwtUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,7 +24,7 @@ public class LoginServiceImpl implements com.ems.backend.service.account.LoginSe
                 new UsernamePasswordAuthenticationToken(name, password);
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
 
-        EmployeeDetailsImpl employeeDetails = (EmployeeDetailsImpl) authenticate.getPrincipal();
+        UserDetailsImpl employeeDetails = (UserDetailsImpl) authenticate.getPrincipal();
         Employee employee = employeeDetails.getEmployee();
 
         String jwt = JwtUtil.createJWT(employee.getId().toString());
