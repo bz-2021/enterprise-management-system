@@ -1,0 +1,75 @@
+package com.ems.backend.service.impl.account;
+
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.ems.backend.mapper.EmployeeMapper;
+import com.ems.backend.pojo.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Service
+public class RegisterServiceImpl implements com.ems.backend.service.account.RegisterService {
+
+    @Autowired
+    private EmployeeMapper employeeMapper;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Override
+    public Map<String, String> register(String name, String password, String confirmedPassword) {
+        Map<String, String> map = new HashMap<>();
+        if(name == null){
+            map.put("error_messsage", "姓名不能为空");
+            return map;
+        }
+        if(password == null || confirmedPassword == null){
+            map.put("error_message", "密码不能为空");
+            return map;
+        }
+        name = name.trim();
+
+        if(name.length() == 0){
+            map.put("error_message", "姓名不能为空");
+            return map;
+        }
+        if(password.length() == 0 || confirmedPassword.length() == 0){
+            map.put("error_message", "密码不能为空");
+            return map;
+        }
+        if(name.length() > 10){
+            map.put("error_message", "姓名长度不能大于10");
+            return map;
+        }
+        if(password.length() > 100 || confirmedPassword.length() > 100) {
+            map.put("error_message", "密码长度不能大于100");
+            return map;
+        }
+        if(!password.equals(confirmedPassword)) {
+            map.put("error_message", "两次输入的密码不一致");
+            return map;
+        }
+
+        QueryWrapper<Employee> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name", name);
+        List<Employee> users = employeeMapper.selectList(queryWrapper);
+        if(!users.isEmpty()){
+            map.put("error_message", "用户名已存在");
+            return map;
+        }
+
+        String encodedPassword = passwordEncoder.encode(password);
+        String Photo = "https://cdn.acwing.com/media/user/profile/photo/183562_lg_b8aaa078f8.jpg";
+        Employee employee = new Employee();
+
+        employeeMapper.insert(employee);
+
+        map.put("error_message", "success");
+        return map;
+    }
+}
