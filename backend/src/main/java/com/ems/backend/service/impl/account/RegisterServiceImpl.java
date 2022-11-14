@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +25,17 @@ public class RegisterServiceImpl implements com.ems.backend.service.account.Regi
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public Map<String, String> register(String name, String password, String confirmedPassword) {
+    public Map<String, String> register(String name,
+                                        String gender,
+                                        String ethnicity,
+                                        String birthday,
+                                        String politicalFace,
+                                        String education,
+                                        String idCard,
+                                        String phoneNumber,
+                                        String department,
+                                        String password,
+                                        String confirmedPassword) throws ParseException {
         Map<String, String> map = new HashMap<>();
         if(name == null){
             map.put("error_messsage", "姓名不能为空");
@@ -65,7 +78,25 @@ public class RegisterServiceImpl implements com.ems.backend.service.account.Regi
 
         String encodedPassword = passwordEncoder.encode(password);
         String Photo = "https://cdn.acwing.com/media/user/profile/photo/183562_lg_b8aaa078f8.jpg";
-        Employee employee = new Employee();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date myBirthday;
+        myBirthday = sdf.parse(birthday);
+
+        Employee employee = new Employee(null,
+                name,
+                gender,
+                Photo,
+                ethnicity,
+                myBirthday,
+                politicalFace,
+                education,
+                idCard,
+                phoneNumber,
+                encodedPassword,
+                0,
+                "在职");
 
         employeeMapper.insert(employee);
 
