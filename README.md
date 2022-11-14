@@ -78,3 +78,38 @@ URL: http://localhost:8083/employee/register/
 | :---:| :---: |
 | error_message | success：成功 |
 
+#### 获取用户信息 ####
+
+http请求方式: GET
+
+URL: http://localhost:8083/employee/info/
+
+| 参数 | 说明 |
+| :---:| :---: |
+| header | 格式"Bearer " + token |
+
+返回参数
+
+| 参数 | 说明 |
+| :---:| :---: |
+| error_message | 成功：success |
+| id | 唯一ID |
+| name | 姓名 |
+| photo | 照片 |部门 |
+| status | 在职状态 |
+
+#### 开除职员 ####
+
+http请求方式: POST
+
+URL: http://localhost:8083/employee/remove/
+
+| 参数 | 说明 |
+| :---:| :---: |
+| id | 要开除职员的Id |
+
+返回参数
+
+| 参数 | 说明 |
+| :---:| :---: |
+| error_message | 成功：success 失败：您没有该权限 |

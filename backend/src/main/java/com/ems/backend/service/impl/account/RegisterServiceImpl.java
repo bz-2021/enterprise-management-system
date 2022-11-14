@@ -97,7 +97,8 @@ public class RegisterServiceImpl implements com.ems.backend.service.account.Regi
                 phoneNumber,
                 encodedPassword,
                 0,
-                "在职");
+                "在职",
+                12);
 
         employeeMapper.insert(employee);
 
