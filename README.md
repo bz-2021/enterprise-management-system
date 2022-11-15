@@ -113,3 +113,65 @@ URL: http://localhost:8083/employee/remove/
 | 参数 | 说明 |
 | :---:| :---: |
 | error_message | 成功：success 失败：您没有该权限 |
+
+#### 更新职员信息 ####
+
+http请求方式: POST
+
+URL: http://localhost:8083/employee/update/
+
+| 参数 | 说明 |
+| :---:| :---: |
+| employee_id | 对象的id |
+| name | 姓名 |
+| gender | 密码 |
+| photo | 头像 |
+| ethnicity | 民族 |
+| birthday | 生日（格式为yyyy-MM-dd） |
+| politicalFace | 政治面貌 |
+| education | 文化程度 |
+| idCard | 身份证号 |
+| phoneNumber | 手机号 |
+| department | 部门 |
+| status | 在职状态 |
+| level | 等级 |
+
+
+| 参数 | 说明 |
+| :---:| :---: |
+| header | 格式"Bearer " + token |
+
+返回参数
+
+| 参数 | 说明 |
+| :---:| :---: |
+| error_message | 成功：success |
+
+#### 获得职员信息 ####
+
+http请求方式: GET
+
+URL: http://localhost:8083/employee/getlist/
+
+| 参数 | 说明 |
+| :---:| :---: |
+| header | 格式"Bearer " + token |
+
+返回参数
+
+| 参数 | 说明 |
+| :---:| :---: |
+| error_message | 成功：success |
+| id | id |
+| name | 姓名 |
+| gender | 密码 |
+| photo | 头像 |
+| ethnicity | 民族 |
+| birthday | 生日（格式为yyyy-MM-dd） |
+| politicalFace | 政治面貌 |
+| education | 文化程度 |
+| idCard | 身份证号 |
+| phoneNumber | 手机号 |
+| department | 部门 |
+| status | 在职状态 |
+| level | 等级 |
