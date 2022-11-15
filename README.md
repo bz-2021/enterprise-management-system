@@ -23,7 +23,7 @@ create table employee
     education      varchar(20)   null,
     id_card        varchar(30)   null,
     phone_number   varchar(12)   null,
-    password       varchar(20)   null,
+    password       varchar(200)   null,
     department     int           null,
     status         varchar(20)   null,
     level          int           null,

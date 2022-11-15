@@ -17,6 +17,7 @@ public class LoginController {
 
     @PostMapping("/employee/token/")
     public Map<String,String> login(@RequestParam Map<String,String> data){
+        System.out.println(data);
         String name = data.get("name");
         String password = data.get("password");
         return loginService.login(name, password);

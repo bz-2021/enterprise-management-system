@@ -68,6 +68,22 @@ public class RegisterServiceImpl implements com.ems.backend.service.account.Regi
             map.put("error_message", "两次输入的密码不一致");
             return map;
         }
+        if(!(gender.equals("男") || gender.equals("女"))){
+            map.put("error_message", "性别只能为男或女");
+            return map;
+        }
+        if(idCard == null){
+            map.put("error_message", "身份证号不能为空");
+            return map;
+        }
+        if(department == null){
+            map.put("error_message", "部门名称不能为空");
+            return map;
+        }
+        if(phoneNumber == null){
+            map.put("error_message", "手机号不能为空");
+            return map;
+        }
 
         QueryWrapper<Employee> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("name", name);
