@@ -4,31 +4,69 @@
 
 ##### 数据库：MySQL80 #####
 
-##### 用户名：`root`  密码：`123456` #####
-
 ##### 端口：`8083` #####
 
 建立Employee表：
 ```
 create table employee
 (
-    id             int auto_increment
-        primary key,
-    name           varchar(20)   not null,
-    gender         varchar(5)    null,
-    photo          varchar(1000) null,
-    ethnicity      varchar(20)   null,
-    birthday       date          null,
-    political_face varchar(20)   null,
-    education      varchar(20)   null,
-    id_card        varchar(30)   null,
-    phone_number   varchar(12)   null,
-    password       varchar(200)   null,
-    department     int           null,
-    status         varchar(20)   null,
-    level          int           null,
-    constraint employee_id_uindex
-        unique (id)
+    id             int primary key identity(1,1),		--员工编号
+    did 	int references department(did) not null,    --部门(引用外键)
+    status         varchar(20)   null,			        --职位
+    level          int           null,				    --等级(L1-L5)
+    name           varchar(20)   not null,			    --姓名
+    gender         varchar(5)    not null,			    --性别
+    photo          varchar(1000) null,			        --大头照
+    ethnicity      varchar(20)   null,			        --民族
+    birthday       date          null,				    --生日
+    political_face varchar(20)   null,			        --政治面貌
+    education      varchar(20)   null,			        --文化程度
+    id_card        varchar(30)   not null,			    --身份证
+    phone_number   varchar(12)   not null,		        --电话号码
+    e_mail		varchar(30)  not null,		            --电子邮箱
+    incumbency	varchar(2) default('是') check(incumbency='是' or incumbency='否'),
+                                                        --在职情况
+    user_name	varchar(10) not null,		            --用户名
+    account		varchar(20) not null,		            --账号
+    password       varchar(200)  not null,		        --密码
+    regist_time	smalldatetime default(getdate()),       --注册时间
+    constraint employee_id_uindex unique (id)
+);
+```
+建立Department表
+```
+create table department
+(
+    did int primary key identity(1,1),	--部门编号
+    dName nvarchar(50) not null,	    --部门名称
+    dlevel int null,				    --部门等级	
+    dRemark text				        --部门描述
+);
+
+```
+建立Attendance表
+```
+create table employee_attendance
+(
+    id 	int references employer(id) not null,	--员工编号(引用外键)
+    attendance	int not null,			        --出勤天数
+    late			int not null,			    --迟到次数
+    leave_early 	int not null,			    --早退天数
+    absence		int not null,			        --缺勤天数
+    overtime		int not null,			    --加班次数
+);
+```
+建立Wages表
+```
+create table employee_wages
+(
+    id 	int references employer(id) not null,	--员工编号(引用外键)
+    base_salary 	money not null,		        --底薪
+    bonus 		money not null,		            --奖金	
+    deduct_wages text	money not null,	        --扣除工资
+    deduct_reason	text				        --扣除原因
+    net_salary		money not null,		        --实发工资
+    time		smalldatetime not null,	        --发工资时间
 );
 ```
 
