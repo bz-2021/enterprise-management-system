@@ -36,6 +36,8 @@ create table employee
 
 #### 登录 ####
 
+说明：请求后端返回一个token，用来进行除登录和注册接口外的权限验证
+
 http请求方式: POST
 
 URL: http://localhost:8083/employee/token/
@@ -78,7 +80,7 @@ URL: http://localhost:8083/employee/register/
 | :---:| :---: |
 | error_message | success：成功 |
 
-#### 获取用户信息 ####
+#### 获取登录用户信息 ####
 
 http请求方式: GET
 
@@ -149,6 +151,8 @@ URL: http://localhost:8083/employee/update/
 
 #### 获得职员信息 ####
 
+说明：获取比当前用户级别低的所有职员的列表
+
 http请求方式: GET
 
 URL: http://localhost:8083/employee/getlist/
@@ -164,10 +168,10 @@ URL: http://localhost:8083/employee/getlist/
 | error_message | 成功：success |
 | id | id |
 | name | 姓名 |
-| gender | 密码 |
-| photo | 头像 |
+| gender | 性别 |
+| photo | 照片 |
 | ethnicity | 民族 |
-| birthday | 生日（格式为yyyy-MM-dd） |
+| birthday | 生日（格式为yyyy-MM-dd）|
 | politicalFace | 政治面貌 |
 | education | 文化程度 |
 | idCard | 身份证号 |

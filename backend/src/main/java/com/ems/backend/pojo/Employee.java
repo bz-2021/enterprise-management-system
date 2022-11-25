@@ -15,6 +15,8 @@ import java.util.Date;
 public class Employee {
     @TableId(type = IdType.AUTO)
     private Integer id;
+    private String status;
+    private Integer level;
     private String name;
     private String gender;
     private String photo;
@@ -25,8 +27,12 @@ public class Employee {
     private String education;
     private String idCard;
     private String phoneNumber;
+    private String eMail;
+    private String incumbency;
+    private String userName;
+    private String account;
     private String password;
-    private Integer department;
-    private String status;
-    private Integer level;
+    private String registTime;
+    private Integer did;
+
 }
