@@ -13,6 +13,6 @@ public class Department {
     @TableId(type = IdType.AUTO)
     private Integer did;
     private String dName;
-    private Integer dlevel;
+    private Integer dLevel;
     private Integer dRemark;
 }

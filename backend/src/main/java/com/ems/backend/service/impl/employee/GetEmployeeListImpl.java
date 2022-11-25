@@ -24,8 +24,12 @@ public class GetEmployeeListImpl implements GetEmployeeListService {
         QueryWrapper<Employee> queryWrapper = new QueryWrapper<>();
 
         queryWrapper.gt("level", employee.getLevel());
-        //System.out.println(employeeMapper.selectList(queryWrapper));
 
-        return employeeMapper.selectList(queryWrapper);
+        List<Employee> list = employeeMapper.selectList(queryWrapper);
+
+        for(Employee employee1 : list){
+            employee1.setPassword("密码不可见哦");
+        }
+        return list;
     }
 }

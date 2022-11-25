@@ -6,6 +6,13 @@
 
 ##### 端口：`8083` #####
 
+#### ⚠ 注意 ####
+
+```
+1.在建表时应避免将任何column命名为诸如dName这样驼峰命名法的形式
+ 因为BaseMapper会将Pojo层的dName视为表中的d_name.
+```
+
 建立Employee表：
 ```
 create table employee
@@ -38,9 +45,9 @@ create table employee
 create table department
 (
     did int primary key identity(1,1),	--部门编号
-    dName nvarchar(50) not null,	    --部门名称
-    dlevel int null,				    --部门等级	
-    dRemark text				        --部门描述
+    d_name nvarchar(50) not null,	    --部门名称
+    d_level int null,				    --部门等级	
+    d_remark text				        --部门描述
 );
 
 ```
@@ -74,7 +81,7 @@ create table employee_wages
 
 #### 登录 ####
 
-说明：请求后端返回一个token，用来进行除登录和注册接口外的权限验证
+说明：请求后端进行登录，然后返回一个token，用来进行除登录和注册外的权限验证
 
 http请求方式: POST
 
@@ -89,10 +96,17 @@ URL: http://localhost:8083/employee/token/
 
 | 参数 | 说明 |
 | :---:| :---: |
-| error_message | success：成功 |
+| error_message | 报错信息 |
 | token | token数据 |
 
-#### 注册 ####
+error_message的可能返回值
+
+```
+success
+您已离职，无权访问此系统
+```
+
+#### 添加雇员（注册） ####
 
 http请求方式: POST
 
@@ -101,14 +115,20 @@ URL: http://localhost:8083/employee/register/
 | 参数 | 说明 |
 | :---:| :---: |
 | name | 姓名 |
-| gender | 密码 |
+| level | 级别 |
+| status | 职位 |
+| gender | 性别 |
+| photo | 照片的URL |
 | ethnicity | 民族 |
-| birthday | 生日（格式为yyyy-MM-dd） |
+| birthday | 生日（yyyy-MM-dd） |
 | politicalFace | 政治面貌 |
 | education | 文化程度 |
-| idCard | 身份证号 |
-| phoneNumber | 手机号 |
-| department | 部门 |
+| id_card | 身份证号 |
+| phone_number | 手机号 |
+| e_mail | 电子邮箱 |
+| username | 用户名 |
+| account | 账户 |
+| did | 部门编号 |
 | password | 密码 |
 | confirmedPassword | 确认密码 |
 
@@ -116,9 +136,48 @@ URL: http://localhost:8083/employee/register/
 
 | 参数 | 说明 |
 | :---:| :---: |
-| error_message | success：成功 |
+| error_message | 报错信息 |
 
-#### 获取登录用户信息 ####
+error_message的可能返回值
+
+```
+success
+姓名不能为空
+level不能为空
+level只能是1-5之间的数字
+level不符合规则
+姓名不能为空
+姓名长度不能大于10
+密码不能为空
+密码长度不能大于100
+两次输入的密码不一致
+职位不能为空
+职位超出字数限制
+性别只能为男或女
+照片的URL不能为空
+照片URL超出字数限制
+民族不能为空
+民族超出字数限制
+政治面貌不能为空
+政治面貌超出字数限制
+受教育程度不能为空
+受教育程度超出字数限制
+身份证号不能为空
+身份证号长度超出字数限制
+手机号不能为空
+手机号长度超出限制
+E-mail不能为空
+E-mail长度超出限制
+用户名不能为空
+用户名长度超出字数限制
+部门编号不能为空
+部门编号不存在
+部门编号不符合规则
+出生日期不符合规则
+用户名已存在
+```
+
+#### 验证用户Token并获取登录用户信息 ####
 
 http请求方式: GET
 
@@ -132,13 +191,19 @@ URL: http://localhost:8083/employee/info/
 
 | 参数 | 说明 |
 | :---:| :---: |
-| error_message | 成功：success |
+| error_message | 报错信息 |
 | id | 唯一ID |
 | name | 姓名 |
 | photo | 照片 |部门 |
 | status | 在职状态 |
 
-#### 开除职员 ####
+error_message的可能返回值
+
+```
+success
+```
+
+#### 开除职员（撤销登陆系统的权限） ####
 
 http请求方式: POST
 
@@ -152,7 +217,15 @@ URL: http://localhost:8083/employee/remove/
 
 | 参数 | 说明 |
 | :---:| :---: |
-| error_message | 成功：success 失败：您没有该权限 |
+| error_message | 报错信息 |
+
+error_message的可能返回值
+
+```
+success
+该员工已离职
+您没有该权限
+```
 
 #### 更新职员信息 ####
 
@@ -164,17 +237,20 @@ URL: http://localhost:8083/employee/update/
 | :---:| :---: |
 | employee_id | 对象的id |
 | name | 姓名 |
-| gender | 密码 |
-| photo | 头像 |
+| level | 级别 |
+| status | 职位 |
+| gender | 性别 |
+| photo | 照片的URL |
 | ethnicity | 民族 |
-| birthday | 生日（格式为yyyy-MM-dd） |
+| birthday | 生日（yyyy-MM-dd） |
 | politicalFace | 政治面貌 |
 | education | 文化程度 |
-| idCard | 身份证号 |
-| phoneNumber | 手机号 |
-| department | 部门 |
-| status | 在职状态 |
-| level | 等级 |
+| id_card | 身份证号 |
+| phone_number | 手机号 |
+| e_mail | 电子邮箱 |
+| username | 用户名 |
+| account | 账户 |
+| did | 部门编号 |
 
 
 | 参数 | 说明 |
@@ -185,9 +261,19 @@ URL: http://localhost:8083/employee/update/
 
 | 参数 | 说明 |
 | :---:| :---: |
-| error_message | 成功：success |
+| error_message | 报错信息 |
 
-#### 获得职员信息 ####
+error_message的可能返回值
+
+```
+success
+您没有该权限
+该成员级别不明，无法更新
+您无法将此人level改为同级或更高
+```
+` 其他同注册接口的可能返回值 `
+
+#### 获得手下职员的列表信息 ####
 
 说明：获取比当前用户级别低的所有职员的列表
 
@@ -203,17 +289,21 @@ URL: http://localhost:8083/employee/getlist/
 
 | 参数 | 说明 |
 | :---:| :---: |
-| error_message | 成功：success |
 | id | id |
 | name | 姓名 |
+| level | 级别 |
+| status | 职位 |
 | gender | 性别 |
-| photo | 照片 |
+| photo | 照片的URL |
 | ethnicity | 民族 |
-| birthday | 生日（格式为yyyy-MM-dd）|
+| birthday | 生日（yyyy-MM-dd） |
 | politicalFace | 政治面貌 |
 | education | 文化程度 |
-| idCard | 身份证号 |
-| phoneNumber | 手机号 |
-| department | 部门 |
-| status | 在职状态 |
-| level | 等级 |
+| id_card | 身份证号 |
+| phone_number | 手机号 |
+| e_mail | 电子邮箱 |
+| username | 用户名 |
+| account | 账户 |
+| password | 密码（隐藏） |
+| registTime | 注册时间（yyyy-MM-dd HH:mm:ss） |
+| did | 部门编号 |

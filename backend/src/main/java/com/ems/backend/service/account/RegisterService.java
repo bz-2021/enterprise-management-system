@@ -5,14 +5,20 @@ import java.util.Map;
 
 public interface RegisterService {
     Map<String,String> register(String name,
+                                String level,
+                                String status,
                                 String gender,
+                                String photo,
                                 String ethnicity,
                                 String birthday,
                                 String politicalFace,
                                 String education,
                                 String idCard,
                                 String phoneNumber,
-                                String department,
+                                String email,
+                                String username,
+                                String account,
+                                String did,
                                 String password,
                                 String confirmedPassword) throws ParseException;
 }

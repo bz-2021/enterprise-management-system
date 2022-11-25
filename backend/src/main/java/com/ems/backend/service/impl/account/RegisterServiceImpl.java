@@ -26,14 +26,20 @@ public class RegisterServiceImpl implements com.ems.backend.service.account.Regi
 
     @Override
     public Map<String, String> register(String name,
+                                        String level,
+                                        String status,
                                         String gender,
+                                        String photo,
                                         String ethnicity,
                                         String birthday,
                                         String politicalFace,
                                         String education,
                                         String idCard,
                                         String phoneNumber,
-                                        String department,
+                                        String email,
+                                        String username,
+                                        String account,
+                                        String did,
                                         String password,
                                         String confirmedPassword) throws ParseException {
         Map<String, String> map = new HashMap<>();
@@ -41,6 +47,21 @@ public class RegisterServiceImpl implements com.ems.backend.service.account.Regi
         if(name == null){
             map.put("error_message", "姓名不能为空");
             return map;
+        }
+        if(level == null){
+            map.put("error_message", "level不能为空");
+            return map;
+        } else {
+            try{
+                int ll = Integer.parseInt(level);
+                if(ll > 5 || ll < 1){
+                    map.put("error_message", "level只能是1-5之间的数字");
+                    return map;
+                }
+            } catch(Exception e){
+                map.put("error_message", "level不符合规则");
+                return map;
+            }
         }
         if(password == null || confirmedPassword == null){
             map.put("error_message", "密码不能为空");
@@ -68,20 +89,126 @@ public class RegisterServiceImpl implements com.ems.backend.service.account.Regi
             map.put("error_message", "两次输入的密码不一致");
             return map;
         }
+        status = status.trim();
+
+        if(status.length() == 0){
+            map.put("error_message", "职位不能为空");
+            return map;
+        }
+        if(status.length() > 10){
+            map.put("error_message", "职位超出字数限制");
+            return map;
+        }
         if(!(gender.equals("男") || gender.equals("女"))){
             map.put("error_message", "性别只能为男或女");
             return map;
         }
-        if(idCard == null){
+        photo = photo.trim();
+
+        if(photo.length() == 0){
+            map.put("error_message", "照片的URL不能为空");
+        }
+        if(photo.length() > 500){
+            map.put("error_message", "照片URL超出字数限制");
+            return map;
+        }
+        ethnicity = ethnicity.trim();
+
+        if(ethnicity.length() == 0){
+            map.put("error_message", "民族不能为空");
+            return map;
+        }
+        if(ethnicity.length() > 10){
+            map.put("error_message", "民族超出字数限制");
+            return map;
+        }
+        politicalFace = politicalFace.trim();
+
+        if(politicalFace.length() == 0){
+            map.put("error_message", "政治面貌不能为空");
+            return map;
+        }
+        if(politicalFace.length() > 10){
+            map.put("error_message", "政治面貌超出超出限制");
+            return map;
+        }
+        education = education.trim();
+
+        if(education.length() == 0){
+            map.put("error_message", "受教育程度不能为空");
+            return map;
+        }
+        if(education.length() > 10){
+            map.put("error_message", "受教育程度超出字数限制");
+            return map;
+        }
+        idCard = idCard.trim();
+
+        if(idCard.length() == 0){
             map.put("error_message", "身份证号不能为空");
             return map;
         }
-        if(department == null){
-            map.put("error_message", "部门名称不能为空");
+        if(idCard.length() > 20){
+            map.put("error_message", "身份证号长度超出字数限制");
             return map;
         }
-        if(phoneNumber == null){
+        phoneNumber = phoneNumber.trim();
+
+        if(phoneNumber.length() == 0){
             map.put("error_message", "手机号不能为空");
+            return map;
+        }
+        if(phoneNumber.length() > 20){
+            map.put("error_message", "手机号长度超出限制");
+            return map;
+        }
+        email = email.trim();
+
+        if(email.length() == 0){
+            map.put("error_message", "E-mail不能为空");
+            return map;
+        }
+        if(email.length() > 30){
+            map.put("error_message", "E-mail长度超出限制");
+            return map;
+        }
+        username = username.trim();
+
+        if(username.length() == 0){
+            map.put("error_message", "用户名不能为空");
+            return map;
+        }
+        if(username.length() > 20){
+            map.put("error_message", "用户名长度超出字数限制");
+            return map;
+        }
+
+        did = did.trim();
+
+        if(did.length() == 0){
+            map.put("error_message", "部门编号不能为空");
+            return map;
+        }
+        try{
+            int d_id = Integer.parseInt(did);
+            if(d_id < 1 || d_id > 6){
+                map.put("error_message", "部门编号不存在");
+                return map;
+            }
+        } catch (Exception e){
+            map.put("error_message", "部门编号不符合规则");
+            return map;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date now_date = new Date();
+
+        Date myBirthday;
+        try{
+            myBirthday = sdf.parse(birthday);
+        } catch (Exception e){
+            map.put("error_message", "出生日期不符合规则");
             return map;
         }
 
@@ -94,27 +221,27 @@ public class RegisterServiceImpl implements com.ems.backend.service.account.Regi
         }
 
         String encodedPassword = passwordEncoder.encode(password);
-        String Photo = "https://cdn.acwing.com/media/user/profile/photo/183562_lg_b8aaa078f8.jpg";
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-        Date myBirthday;
-        myBirthday = sdf.parse(birthday);
 
         Employee employee = new Employee(null,
+                status,
+                Integer.parseInt(level),
                 name,
                 gender,
-                Photo,
+                photo,
                 ethnicity,
                 myBirthday,
                 politicalFace,
                 education,
                 idCard,
                 phoneNumber,
+                email,
+                "是",
+                username,
+                account,
                 encodedPassword,
-                0,
-                "在职",
-                12);
+                now_date,
+                Integer.parseInt(did)
+                );
 
         employeeMapper.insert(employee);
 

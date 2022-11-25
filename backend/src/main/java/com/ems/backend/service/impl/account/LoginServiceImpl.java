@@ -27,9 +27,15 @@ public class LoginServiceImpl implements com.ems.backend.service.account.LoginSe
         UserDetailsImpl employeeDetails = (UserDetailsImpl) authenticate.getPrincipal();
         Employee employee = employeeDetails.getEmployee();
 
+        Map<String, String > map = new HashMap<>();
+
+        if(employee.getIncumbency().equals("否")){
+            map.put("error_message", "您已离职，无权访问此系统");
+            return map;
+        }
+
         String jwt = JwtUtil.createJWT(employee.getId().toString());
 
-        Map<String, String > map = new HashMap<>();
         map.put("error_message", "success");
         map.put("token", jwt);
 

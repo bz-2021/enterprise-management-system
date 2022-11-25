@@ -32,7 +32,8 @@ public class Employee {
     private String userName;
     private String account;
     private String password;
-    private String registTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
+    private Date registTime;
     private Integer did;
 
 }
