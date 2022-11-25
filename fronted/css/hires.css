@@ -1,5 +1,5 @@
 * {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
 }
@@ -41,6 +41,7 @@ a:hover {
 }
 
 img {
+    display: block;
     width: 1510px;
     height: 500px;
 }
