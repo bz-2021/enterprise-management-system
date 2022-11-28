@@ -25,13 +25,17 @@ public class GetThisEmployeeImpl implements GetThisEmployeeService {
     public List<Employee> getlist(Integer did) {
         List<Employee> list = new ArrayList<>();
         Employee employee = AuthorizationUtil.getEmployee();
+        Department department = departmentMapper.selectById(did);
+        // 目标的部门
         QueryWrapper<Employee> queryWrapper = new QueryWrapper<>();
         QueryWrapper<Department> departmentQueryWrapper = new QueryWrapper<>();
         departmentQueryWrapper.eq("did", employee.getDid());
         Integer d_level = departmentMapper.selectOne(departmentQueryWrapper).getDLevel();
-        if(d_level < did) return list;
+        // 发送此操作的人员所在的部门的级别
+        if(d_level > department.getDLevel()) return list;
         queryWrapper.eq("did", did);
-        return employeeMapper.selectList(queryWrapper);
-        and is a diiffentrent news and we all thanks to do this 
+        list = employeeMapper.selectList(queryWrapper);
+        for(Employee employee1 : list) employee1.setPassword("");
+        return list;
     }
 }

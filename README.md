@@ -79,6 +79,12 @@ create table employee_wages
 
 ### 接口文档 ###
 
+#### ⚠说明 ####
+
+```
+接口名称包含‘列表’的，返回值为List类型，其他的为Map类型
+```
+
 #### 登录 ####
 
 说明：请求后端进行登录，然后返回一个token，用来进行除登录和注册外的权限验证
@@ -364,3 +370,21 @@ URL: http://localhost:8083/department/getlist/
 | dname | 部门名称 |
 | dlevel | 部门级别 |
 | dremark | 部门简介 |
+
+#### 获取某部门下的雇员列表 ####
+
+说明：若请求此接口的用户所在的部门的d_level大于或等于要请求的部门的d_level，则返回该部门下的所有雇员信息
+
+http请求方式: POST
+
+URL: http://localhost:8083/this/employee/
+
+| 参数 | 说明 |
+| :---:| :---: |
+| did | 请求的部门的id |
+
+| 参数 | 说明 |
+| :---:| :---: |
+| header | 格式"Bearer " + token |
+
+返回参数同`获得手下职员的列表信息`接口的参数
