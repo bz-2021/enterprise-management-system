@@ -388,3 +388,33 @@ URL: http://localhost:8083/this/employee/
 | header | 格式"Bearer " + token |
 
 返回参数同`获得手下职员的列表信息`接口的参数
+
+
+#### 获取自己的考勤信息 ####
+
+说明：获得自己的考勤信息
+
+http请求方式: GET
+
+URL: http://localhost:8083/get/attendance/
+
+| 参数 | 说明 |
+| :---:| :---: |
+| header | 格式"Bearer " + token |
+
+返回参数
+
+| 参数 | 说明 |
+| :---:| :---: |
+| error_message | 未找到此雇员的考勤信息 |
+
+或者是
+
+| 参数 | 说明 |
+| :---:| :---: |
+| error_message | success |
+| attendance | 出勤天数 |
+| late | 迟到次数 |
+| leave_early | 早退天数 |
+| absence | 缺勤天数 |
+| overtime | 加班次数 | 
