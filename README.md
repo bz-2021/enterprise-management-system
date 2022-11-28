@@ -307,3 +307,60 @@ URL: http://localhost:8083/employee/getlist/
 | password | 密码（隐藏） |
 | registTime | 注册时间（yyyy-MM-dd HH:mm:ss） |
 | did | 部门编号 |
+
+#### 忘记密码 ####
+
+说明：修改更新用户密码
+
+http请求方式: POST
+
+URL: http://localhost:8083/update/password/
+
+| 参数 | 说明 |
+| :---:| :---: |
+| id | 被更新密码的对象的id |
+| password | 密码 |
+| confirmedPassword | 确认密码 |
+
+
+| 参数 | 说明 |
+| :---:| :---: |
+| header | 格式"Bearer " + token |
+
+返回参数
+
+| 参数 | 说明 |
+| :---:| :---: |
+| error_message | 报错信息 |
+
+error_message的可能返回值
+
+```
+success
+您没有该权限
+该成员级别不明，无法更新
+密码不能为空
+密码的长度不能大于30
+两次输入的密码不一致
+```
+
+#### 获得部门列表 ####
+
+说明：任何未离职的雇员都有权限获取所有的部门的信息
+
+http请求方式: GET
+
+URL: http://localhost:8083/department/getlist/
+
+| 参数 | 说明 |
+| :---:| :---: |
+| header | 格式"Bearer " + token |
+
+返回参数
+
+| 参数 | 说明 |
+| :---:| :---: |
+| did | 部门id |
+| dname | 部门名称 |
+| dlevel | 部门级别 |
+| dremark | 部门简介 |
