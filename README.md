@@ -61,6 +61,7 @@ create table employee_attendance
     leave_early 	int not null,			    --早退天数
     absence		int not null,			        --缺勤天数
     overtime		int not null,			    --加班次数
+    update_time     date null,                  --最近一次更新的时间
 );
 ```
 建立Wages表
@@ -79,10 +80,13 @@ create table employee_wages
 
 ### 接口文档 ###
 
-#### ⚠说明 ####
+##### ⚠说明 #####
 
 ```
 接口名称包含‘列表’的，返回值为List类型，其他的为Map类型
+```
+```
+对于需要验证token的接口，需要添加Authorization参数的请求头（Header）
 ```
 
 #### 登录 ####
@@ -390,13 +394,17 @@ URL: http://localhost:8083/this/employee/
 返回参数同`获得手下职员的列表信息`接口的参数
 
 
-#### 获取自己的考勤信息 ####
+#### 获取考勤信息 ####
 
-说明：获得自己的考勤信息
+说明：获取指定雇员（比自己级别低）的考勤信息
 
-http请求方式: GET
+http请求方式: POST
 
 URL: http://localhost:8083/get/attendance/
+
+| 参数 | 说明 |
+| :---:| :---: |
+| id | 对方的id |
 
 | 参数 | 说明 |
 | :---:| :---: |
@@ -404,9 +412,14 @@ URL: http://localhost:8083/get/attendance/
 
 返回参数
 
-| 参数 | 说明 |
-| :---:| :---: |
-| error_message | 未找到此雇员的考勤信息 |
+error_message的可能返回值
+
+```
+success
+无效的Id
+未找到此雇员的考勤信息
+您没有该权限
+```
 
 或者是
 
@@ -418,3 +431,43 @@ URL: http://localhost:8083/get/attendance/
 | leave_early | 早退天数 |
 | absence | 缺勤天数 |
 | overtime | 加班次数 | 
+
+#### 更新考勤信息 ####
+
+说明：若请求对象id为本人id，则视为进行考勤打卡。
+其他情况下，更新此用户的考勤状态。
+
+http请求方式：POST
+
+URL: http://localhost:8083/update/attendance/
+
+| 参数 | 说明 |
+| :---:| :---: |
+| id | 对方的id |
+| status | 当天的考勤情况 |
+
+| 参数 | 说明 |
+| :---:| :---: |
+| header | 格式"Bearer " + token |
+
+status的可能值及代表的含义
+
+```
+attendance      --正常出勤
+late            --迟到
+leave_early     --早退
+absence         --缺勤
+overtime        --加班
+```
+
+返回参数
+
+error_message的可能返回值
+
+```
+success
+无效的Id
+您今天已进行过考勤
+您没有该权限
+您发送的参数有误（status有误）
+```
