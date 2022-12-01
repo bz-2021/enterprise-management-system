@@ -105,79 +105,48 @@ public class RegisterServiceImpl implements com.ems.backend.service.account.Regi
         }
         photo = photo.trim();
 
-        if(photo.length() == 0){
-            map.put("error_message", "照片的URL不能为空");
-        }
         if(photo.length() > 500){
             map.put("error_message", "照片URL超出字数限制");
             return map;
         }
         ethnicity = ethnicity.trim();
 
-        if(ethnicity.length() == 0){
-            map.put("error_message", "民族不能为空");
-            return map;
-        }
         if(ethnicity.length() > 10){
             map.put("error_message", "民族超出字数限制");
             return map;
         }
         politicalFace = politicalFace.trim();
 
-        if(politicalFace.length() == 0){
-            map.put("error_message", "政治面貌不能为空");
-            return map;
-        }
         if(politicalFace.length() > 10){
             map.put("error_message", "政治面貌超出超出限制");
             return map;
         }
         education = education.trim();
 
-        if(education.length() == 0){
-            map.put("error_message", "受教育程度不能为空");
-            return map;
-        }
         if(education.length() > 10){
             map.put("error_message", "受教育程度超出字数限制");
             return map;
         }
         idCard = idCard.trim();
 
-        if(idCard.length() == 0){
-            map.put("error_message", "身份证号不能为空");
-            return map;
-        }
         if(idCard.length() > 20){
             map.put("error_message", "身份证号长度超出字数限制");
             return map;
         }
         phoneNumber = phoneNumber.trim();
 
-        if(phoneNumber.length() == 0){
-            map.put("error_message", "手机号不能为空");
-            return map;
-        }
         if(phoneNumber.length() > 20){
             map.put("error_message", "手机号长度超出限制");
             return map;
         }
         email = email.trim();
 
-        if(email.length() == 0){
-            map.put("error_message", "E-mail不能为空");
-            return map;
-        }
         if(email.length() > 30){
             map.put("error_message", "E-mail长度超出限制");
             return map;
         }
         username = username.trim();
 
-        if(username.length() == 0){
-            map.put("error_message", "用户名不能为空");
-            return map;
-        }
         if(username.length() > 20){
             map.put("error_message", "用户名长度超出字数限制");
             return map;
@@ -204,12 +173,15 @@ public class RegisterServiceImpl implements com.ems.backend.service.account.Regi
 
         Date now_date = new Date();
 
-        Date myBirthday;
-        try{
-            myBirthday = sdf.parse(birthday);
-        } catch (Exception e){
-            map.put("error_message", "出生日期不符合规则");
-            return map;
+        Date myBirthday = null;
+
+        if(birthday != null){
+            try{
+                myBirthday = sdf.parse(birthday);
+            } catch (Exception e){
+                map.put("error_message", "出生日期不符合规则");
+                return map;
+            }
         }
 
         QueryWrapper<Employee> queryWrapper = new QueryWrapper<>();

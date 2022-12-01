@@ -27,10 +27,10 @@ public class RemoveEmployeeImpl implements RemoveEmployeeService {
         Employee EmployeeToBeDel = employeeMapper.selectById(IdToBeDel);
 
         if(EmployeeToBeDel.getLevel() > employee.getLevel()){
-            if(!EmployeeToBeDel.getStatus().equals("在职")){
+            if(!EmployeeToBeDel.getIncumbency().equals("否")){
                 map.put("error_message", "该员工已离职");
             } else {
-                EmployeeToBeDel.setStatus("离职");
+                EmployeeToBeDel.setIncumbency("否");
                 map.put("error_message", "success");
             }
         } else {

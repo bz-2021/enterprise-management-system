@@ -14,7 +14,7 @@ public class GetInfoController {
     private GetInfoService getInfoService;
 
     @GetMapping ("/employee/info")
-    public Map<String,String> getInfo(){
+    public String getInfo(){
         return getInfoService.getInfo();
     }
 }

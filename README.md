@@ -164,21 +164,13 @@ level不符合规则
 职位不能为空
 职位超出字数限制
 性别只能为男或女
-照片的URL不能为空
 照片URL超出字数限制
-民族不能为空
 民族超出字数限制
-政治面貌不能为空
 政治面貌超出字数限制
-受教育程度不能为空
 受教育程度超出字数限制
-身份证号不能为空
 身份证号长度超出字数限制
-手机号不能为空
 手机号长度超出限制
-E-mail不能为空
 E-mail长度超出限制
-用户名不能为空
 用户名长度超出字数限制
 部门编号不能为空
 部门编号不存在
@@ -187,9 +179,9 @@ E-mail长度超出限制
 用户名已存在
 ```
 
-#### 验证用户Token并获取登录用户信息 ####
+#### 获取指定用户信息 ####
 
-http请求方式: GET
+http请求方式: POST
 
 URL: http://localhost:8083/employee/info/
 
@@ -215,6 +207,8 @@ success
 
 #### 开除职员（撤销登陆系统的权限） ####
 
+说明：只是设置并不会从数据库中删除用户
+
 http请求方式: POST
 
 URL: http://localhost:8083/employee/remove/
@@ -237,7 +231,45 @@ success
 您没有该权限
 ```
 
-#### 更新职员信息 ####
+#### 更新信息（个人） ####
+
+
+http请求方式: POST
+
+URL: http://localhost:8083/employee/update/
+
+| 参数 | 说明 |
+| :---:| :---: |
+| photo | 照片的URL |
+| ethnicity | 民族 |
+| birthday | 生日（yyyy-MM-dd） |
+| politicalFace | 政治面貌 |
+| education | 文化程度 |
+| id_card | 身份证号 |
+| phone_number | 手机号 |
+| e_mail | 电子邮箱 |
+| username | 用户名 |
+| account | 账户 |
+
+
+| 参数 | 说明 |
+| :---:| :---: |
+| header | 格式"Bearer " + token |
+
+返回参数
+
+| 参数 | 说明 |
+| :---:| :---: |
+| error_message | 报错信息 |
+
+error_message的可能返回值
+
+```
+success
+出生日期不符合规则
+```
+
+#### 更新信息（人事部） ####
 
 http请求方式: POST
 
