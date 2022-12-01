@@ -35,13 +35,13 @@ public class GetAttendanceImpl implements GetAttendanceService {
         Employee employee = AuthorizationUtil.getEmployee();
         Employee employee1 =  employeeMapper.selectById(eid);
         QueryWrapper<Attendance> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("id", employee.getId());
+        queryWrapper.eq("id", eid);
         Attendance attendance =  attendanceMapper.selectOne(queryWrapper);
-        if(attendance == null){
-            map.put("error_message", "未找到此雇员的考勤信息");
-            return map;
-        }
         if(employee.getLevel() < employee1.getLevel() || employee.getId() == eid){
+            if(attendance == null){
+                map.put("error_message", "未找到此雇员的考勤信息");
+                return map;
+            }
             map.put("error_message", "success");
             map.put("attendance", attendance.getAttendance().toString());
             map.put("late", attendance.getLate().toString());

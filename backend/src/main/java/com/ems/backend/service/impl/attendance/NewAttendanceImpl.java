@@ -49,9 +49,16 @@ public class NewAttendanceImpl implements NewAttendance {
         }
         Date Now_date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        if(!sdf.format(Now_date).equals(sdf.format(attendance.getUpdateTime())) && !No_Data_Before){
-            map.put("error_message", "您今天已进行过考勤");
-            return map;
+
+        try {
+            System.out.println(sdf.format(Now_date) + "  " + sdf.format(attendance.getUpdateTime()));
+            if(sdf.format(Now_date).equals(sdf.format(attendance.getUpdateTime())) &&
+                    !No_Data_Before){
+                map.put("error_message", "今天已进行过考勤");
+                return map;
+            }
+        } catch (Exception e){
+            attendance.setUpdateTime(new Date());
         }
         if(eid == employee.getId()){
             int now_att = attendance.getAttendance();
@@ -70,28 +77,34 @@ public class NewAttendanceImpl implements NewAttendance {
                 int now_att = attendance.getAttendance();
                 attendance.setAttendance(now_att + 1);
                 map.put("error_message", "success");
+                break;
             case "late": {
                 int now_late = attendance.getLate();
-                attendance.setAttendance(now_late + 1);
+                attendance.setLate(now_late + 1);
                 map.put("error_message", "success");
+                break;
             }
             case "leave_early": {
                 int now_late = attendance.getLeaveEarly();
-                attendance.setAttendance(now_late + 1);
+                attendance.setLeaveEarly(now_late + 1);
                 map.put("error_message", "success");
+                break;
             }
             case "absence": {
                 int now_late = attendance.getAbsence();
-                attendance.setAttendance(now_late + 1);
+                attendance.setAbsence(now_late + 1);
                 map.put("error_message", "success");
+                break;
             }
             case "overtime": {
                 int now_late = attendance.getOvertime();
-                attendance.setAttendance(now_late + 1);
+                attendance.setOvertime(now_late + 1);
                 map.put("error_message", "success");
+                break;
             }
             default:
                 map.put("error_message", "您发送的参数有误");
+                break;
         }
         attendance.setUpdateTime(new Date());
         attendanceMapper.updateById(attendance);

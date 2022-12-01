@@ -31,7 +31,7 @@ public class ForgetPasswordImpl implements ForgetPasswordService {
                 return map;
             }
         } catch (Exception e){
-            map.put("error_message", "该成员级别不明，无法更新");
+            map.put("error_message", "该成员不存在或级别不明，无法更新密码");
             return map;
         }
 
@@ -53,6 +53,7 @@ public class ForgetPasswordImpl implements ForgetPasswordService {
         }
         String encodedPassword = passwordEncoder.encode(password);
         tobeUpdated.setPassword(encodedPassword);
+        employeeMapper.updateById(tobeUpdated);
         map.put("error_message", "success");
         return map;
     }
