@@ -1,7 +1,8 @@
 package com.ems.backend.service.account;
 
 import java.util.Map;
+import java.util.Objects;
 
 public interface GetInfoService {
-    String getInfo();
+    Map<String, Object> getInfo();
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 public class GetInfoController {
@@ -14,7 +15,7 @@ public class GetInfoController {
     private GetInfoService getInfoService;
 
     @GetMapping ("/employee/info")
-    public String getInfo(){
+    public     Map<String, Object> getInfo(){
         return getInfoService.getInfo();
     }
 }

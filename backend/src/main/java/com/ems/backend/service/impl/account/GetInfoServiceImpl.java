@@ -9,11 +9,14 @@ import com.ems.backend.pojo.Employee;
 import com.ems.backend.utils.AuthorizationUtil;
 import com.mysql.cj.xdevapi.JsonString;
 import com.mysql.cj.xdevapi.JsonValue;
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.beans.BeanMap;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,14 +26,14 @@ public class GetInfoServiceImpl implements com.ems.backend.service.account.GetIn
     private DepartmentMapper departmentMapper;
 
     @Override
-    public String getInfo() {
+    public Map<String, Object> getInfo() {
         Employee employee = AuthorizationUtil.getEmployee();
         QueryWrapper<Department> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("did", employee.getDid());
         String DepartmentName = departmentMapper.selectOne(queryWrapper).getDName();
         employee.setPassword("想得美");
-        String beanToString = JSON.toJSONString(employee);
-
-        return beanToString;
+        Map<String,Object> beanToMa = BeanUtils.beanToMap(employee);
+        beanToMa.put("department", DepartmentName);
+        return beanToMa;
     }
 }
