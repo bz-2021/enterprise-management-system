@@ -1,5 +1,6 @@
 package com.ems.backend.controller.account;
 
+import com.ems.backend.pojo.Employee;
 import com.ems.backend.service.account.GetInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ public class GetInfoController {
     private GetInfoService getInfoService;
 
     @GetMapping ("/employee/info")
-    public     Map<String, Object> getInfo(){
+    public Employee getInfo(){
         return getInfoService.getInfo();
     }
 }

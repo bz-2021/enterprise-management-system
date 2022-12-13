@@ -26,14 +26,14 @@ public class GetInfoServiceImpl implements com.ems.backend.service.account.GetIn
     private DepartmentMapper departmentMapper;
 
     @Override
-    public Map<String, Object> getInfo() {
+    public Employee getInfo() {
         Employee employee = AuthorizationUtil.getEmployee();
         QueryWrapper<Department> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("did", employee.getDid());
         String DepartmentName = departmentMapper.selectOne(queryWrapper).getDName();
         employee.setPassword("想得美");
-        Map<String,Object> beanToMa = BeanUtils.beanToMap(employee);
-        beanToMa.put("department", DepartmentName);
-        return beanToMa;
+        //Map<String,Object> beanToMa = BeanUtils.beanToMap(employee);
+        //beanToMa.put("department", DepartmentName);
+        return employee;
     }
 }
