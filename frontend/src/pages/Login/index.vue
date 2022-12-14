@@ -26,13 +26,36 @@
                             </li>
                             <li>
                                 <button class="btn" @click.prevent="Loginin">登录</button>
-                                <!-- <input type="submit" value="登录" class="btn"> -->
+                                <el-button type="info" plain round class="forget" size="mini"
+                                    @click="forgetpassword">忘记密码?</el-button>
                             </li>
                         </ul>
                     </form>
 
                 </div>
             </div>
+        </div>
+
+        <div class="forget-context" :class="{ disappear: !forget }">
+            <el-button plain class="" @click="Close" size="small">关闭</el-button>
+            <el-form :inline="true" class="demo-form-inline positon">
+                <el-form-item label="请输入邮箱">
+                    <el-input placeholder="" v-model="e_mail"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="sendCode">发送验证码</el-button>
+                </el-form-item>
+                <el-form-item label="请输入密码">
+                    <el-input placeholder="" v-model="fpassword"></el-input>
+                </el-form-item>
+                <el-form-item label="请输入验证码">
+                    <el-input placeholder="" v-model="code"></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="submitCode">提交</el-button>
+                </el-form-item>
+            </el-form>
         </div>
     </div>
 </template>
@@ -43,7 +66,11 @@ export default {
     data() {
         return {
             name: "",
-            password: ""
+            password: "",
+            forget: false,
+            e_mail: '',
+            code: '',
+            fpassword: ''
         }
     },
     methods: {
@@ -58,6 +85,29 @@ export default {
                 }
             } catch (error) {
                 alert("账户或密码错误")
+            }
+        },
+        forgetpassword() {
+            this.forget = true
+        },
+        Close() {
+            this.forget = false
+        },
+        sendCode() {
+            if (this.e_mail) {
+                this.$store.dispatch('getCode', this.e_mail)
+            }
+
+        },
+        submitCode() {
+            if (this.e_mail && this.code && this.fpassword) {
+                var data = {
+                    "email": this.e_mail,
+                    "code": this.code,
+                    "password": this.fpassword,
+                    "confirmedPassword": this.fpassword
+                }
+                this.$store.dispatch('getNewPassword', data)
             }
         }
     }
@@ -156,5 +206,33 @@ li {
     font-size: 14px;
     color: white;
     background-color: #c81623;
+}
+
+.disappear {
+    opacity: 0;
+    z-index: -1;
+
+}
+
+.positon {
+    position: absolute;
+    top: 50px;
+    left: 30px;
+}
+
+.forget {
+    position: absolute;
+    top: 130px;
+    left: 1531px;
+}
+
+.forget-context {
+    border-radius: 10px;
+    width: 476px;
+    height: 250px;
+    position: absolute;
+    top: 227px;
+    background-color: white;
+    left: 583px;
 }
 </style>

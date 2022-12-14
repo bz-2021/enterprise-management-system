@@ -9,7 +9,16 @@ module.exports = defineConfig({
       },
       '/department': {
         target: 'http://localhost:8083',
-      }
+      },
+      '/verification': {
+        target: 'http://localhost:8083',
+      },
+      '/password': {
+        target: 'http://localhost:8083',
+      },
+      '/attendance': {
+        target: 'http://localhost:8083',
+      },
     },
   },
 })

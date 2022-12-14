@@ -30,14 +30,20 @@
                     <div class="operation">
                         <div><a href="#" @click="showDetail(index)">详情</a></div>
                         <div><a href="#" @click="showUpdate(index, item.id)">编辑</a></div>
-                        <div><a href="#" @click="delteEmployee(item.id)">删除</a></div>
+                        <el-popover placement="top" width="160">
+                            <p>确定删除吗？</p>
+                            <div style="text-align: right; margin: 0">
+                                <el-button type="primary" size="mini" @click="delteEmployee(item.id)">确定</el-button>
+                            </div>
+                            <a slot="reference">删除</a>
+                        </el-popover>
                     </div>
                 </li>
             </ul>
         </div>
 
         <div ref='detail' class="detail" :class="{ disappear: !showdetail }">
-            <div class="close" @click="Close">关闭</div>
+            <el-button type="warning" @click="Close" size="small">关闭</el-button>
             <div class="detail-nav">
                 <span>生日</span>
                 <span>电话号码</span>
@@ -60,156 +66,113 @@
             </div>
         </div>
         <div ref="update" class="update" :class="{ disappear: !showupdate }">
-            <form action="" method="post" class="basic-grey">
-                <h1>请填写以下信息</h1>
-                <div class="closeadd" @click="Close">关闭</div>
-                <label>
-                    <span>姓名 :</span>
-                    <input id="myname" type="text" name="myname" v-model="myname" />
-                </label>
-                <label>
-                    <span>级别 :</span>
-                    <input id="level" type="text" name="level" v-model="level" />
-                </label>
-                <label>
-                    <span>职位 :</span>
-                    <input id="status" type="text" name="status" v-model="status" />
-                </label>
-                <label>
-                    <span>性别 :</span>
-                    <input id="gender" type="text" name="gender" v-model="gender" />
-                </label>
-                <label>
-                    <span>照片URL :</span>
-                    <input id="photo" type="text" name="photo" v-model="photo" />
-                </label>
-                <label>
-                    <span>民族 :</span>
-                    <input id="ethnicity" type="text" name="ethnicity" v-model="ethnicity" />
-                </label>
-                <label>
-                    <span>生日(yyyy-MM-dd) :</span>
-                    <input id="birthday" type="text" name="birthday" v-model="birthday" />
-                </label>
-                <label>
-                    <span>政治面貌 :</span>
-                    <input id="politicalFace" type="text" name="politicalFace" v-model="politicalFace" />
-                </label>
-                <label>
-                    <span>文化程度 :</span>
-                    <input id="education" type="text" name="education" v-model="education" />
-                </label>
-                <label>
-                    <span>身份证号 :</span>
-                    <input id="id_card" type="text" name="id_card" v-model="id_card" />
-                </label>
-                <label>
-                    <span>手机号 :</span>
-                    <input id="phone_number" type="text" name="phone_number" v-model="phone_number" />
-                </label>
-                <label>
-                    <span>电子邮箱 :</span>
-                    <input id="e_mail" type="text" name="e_mail" v-model="e_mail" />
-                </label>
-                <label>
-                    <span>用户名 :</span>
-                    <input id="username" type="text" name="username" v-model="username" />
-                </label>
-                <label>
-                    <span>账户 :</span>
-                    <input id="account" type="text" name="account" v-model="account" />
-                </label>
-                <label>
-                    <span>部门编号 :</span>
-                    <input id="did" type="text" name="did" v-model="did" />
-                </label>
-                <label>
-                    <span>&nbsp;</span>
-                    <input type="button" class="button" value="提交" @click="modifyEmployee" />
-                </label>
-            </form>
-        </div>
-        <div ref="delete" class="delete" :class="{ disappear: !showdelete }">
-            <div class="close" @click="Close">关闭</div>
-            <div class="delete-title">你确定要删除吗</div>
-            <div class="choose">
-                <div><a href="#">是</a></div>
-                <div><a href="#">否</a></div>
-            </div>
+            <el-form ref="form" label-width="160px">
+                <el-form-item label="姓名 :">
+                    <el-input v-model="myname"></el-input>
+                </el-form-item>
+                <el-form-item label="级别 :">
+                    <el-input v-model="level"></el-input>
+                </el-form-item>
+                <el-form-item label="职位 :">
+                    <el-input v-model="status"></el-input>
+                </el-form-item>
+                <el-form-item label="性别 :">
+                    <el-input v-model="gender"></el-input>
+                </el-form-item>
+                <el-form-item label="照片URL :">
+                    <el-input v-model="photo"></el-input>
+                </el-form-item>
+                <el-form-item label="民族  :">
+                    <el-input v-model="ethnicity"></el-input>
+                </el-form-item>
+                <el-form-item label="生日(yyyy-MM-dd) :">
+                    <el-input v-model="birthday"></el-input>
+                </el-form-item>
+                <el-form-item label="政治面貌 :">
+                    <el-input v-model="politicalFace"></el-input>
+                </el-form-item>
+                <el-form-item label="文化程度 :">
+                    <el-input v-model="education"></el-input>
+                </el-form-item>
+                <el-form-item label="身份证号 :">
+                    <el-input v-model="id_card"></el-input>
+                </el-form-item>
+                <el-form-item label="手机号 :">
+                    <el-input v-model="phone_number"></el-input>
+                </el-form-item>
+                <el-form-item label="电子邮箱 :">
+                    <el-input v-model="e_mail"></el-input>
+                </el-form-item>
+                <el-form-item label="用户名 :">
+                    <el-input v-model="username"></el-input>
+                </el-form-item>
+                <el-form-item label="账户 :">
+                    <el-input v-model="account"></el-input>
+                </el-form-item>
+                <el-form-item label="部门编号 :">
+                    <el-input v-model="did"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="modifyEmployee">提交</el-button>
+                    <el-button @click="Close">取消</el-button>
+                </el-form-item>
+            </el-form>
         </div>
         <div ref="add" class="add" :class="{ disappear: !showadd }">
-            <form action="" method="post" class="basic-grey" :class="{ disableform: !showadd }">
-                <h1>请填写以下信息</h1>
-                <div class="closeadd" @click="Close">关闭</div>
-                <label>
-                    <span>姓名 :</span>
-                    <input id="myname" type="text" name="myname" v-model="myname" />
-                </label>
-                <label>
-                    <span>级别 :</span>
-                    <input id="level" type="text" name="level" v-model="level" />
-                </label>
-                <label>
-                    <span>职位 :</span>
-                    <input id="status" type="text" name="status" v-model="status" />
-                </label>
-                <label>
-                    <span>性别 :</span>
-                    <input id="gender" type="text" name="gender" v-model="gender" />
-                </label>
-                <label>
-                    <span>照片URL :</span>
-                    <input id="photo" type="text" name="photo" v-model="photo" />
-                </label>
-                <label>
-                    <span>民族 :</span>
-                    <input id="ethnicity" type="text" name="ethnicity" v-model="ethnicity" />
-                </label>
-                <label>
-                    <span>生日(yyyy-MM-dd) :</span>
-                    <input id="birthday" type="text" name="birthday" v-model="birthday" />
-                </label>
-                <label>
-                    <span>政治面貌 :</span>
-                    <input id="politicalFace" type="text" name="politicalFace" v-model="politicalFace" />
-                </label>
-                <label>
-                    <span>文化程度 :</span>
-                    <input id="education" type="text" name="education" v-model="education" />
-                </label>
-                <label>
-                    <span>身份证号 :</span>
-                    <input id="id_card" type="text" name="id_card" v-model="id_card" />
-                </label>
-                <label>
-                    <span>手机号 :</span>
-                    <input id="phone_number" type="text" name="phone_number" v-model="phone_number" />
-                </label>
-                <label>
-                    <span>电子邮箱 :</span>
-                    <input id="e_mail" type="text" name="e_mail" v-model="e_mail" />
-                </label>
-                <label>
-                    <span>用户名 :</span>
-                    <input id="username" type="text" name="username" v-model="username" />
-                </label>
-                <label>
-                    <span>账户 :</span>
-                    <input id="account" type="text" name="account" v-model="account" />
-                </label>
-                <label>
-                    <span>部门编号 :</span>
-                    <input id="did" type="text" name="did" v-model="did" />
-                </label>
-                <label>
-                    <span>密码 :</span>
-                    <input id="password" type="text" name="password" v-model="password" />
-                </label>
-                <label>
-                    <span>&nbsp;</span>
-                    <input type="button" class="button" value="提交" @click="addEmployee" />
-                </label>
-            </form>
+            <el-form ref="form" label-width="160px">
+                <el-form-item label="姓名 :">
+                    <el-input v-model="myname"></el-input>
+                </el-form-item>
+                <el-form-item label="级别 :">
+                    <el-input v-model="level"></el-input>
+                </el-form-item>
+                <el-form-item label="职位 :">
+                    <el-input v-model="status"></el-input>
+                </el-form-item>
+                <el-form-item label="性别 :">
+                    <el-input v-model="gender"></el-input>
+                </el-form-item>
+                <el-form-item label="照片URL :">
+                    <el-input v-model="photo"></el-input>
+                </el-form-item>
+                <el-form-item label="民族  :">
+                    <el-input v-model="ethnicity"></el-input>
+                </el-form-item>
+                <el-form-item label="生日(yyyy-MM-dd) :">
+                    <el-input v-model="birthday"></el-input>
+                </el-form-item>
+                <el-form-item label="政治面貌 :">
+                    <el-input v-model="politicalFace"></el-input>
+                </el-form-item>
+                <el-form-item label="文化程度 :">
+                    <el-input v-model="education"></el-input>
+                </el-form-item>
+                <el-form-item label="身份证号 :">
+                    <el-input v-model="id_card"></el-input>
+                </el-form-item>
+                <el-form-item label="手机号 :">
+                    <el-input v-model="phone_number"></el-input>
+                </el-form-item>
+                <el-form-item label="电子邮箱 :">
+                    <el-input v-model="e_mail"></el-input>
+                </el-form-item>
+                <el-form-item label="用户名 :">
+                    <el-input v-model="username"></el-input>
+                </el-form-item>
+                <el-form-item label="账户 :">
+                    <el-input v-model="account"></el-input>
+                </el-form-item>
+                <el-form-item label="部门编号 :">
+                    <el-input v-model="did"></el-input>
+                </el-form-item>
+                <el-form-item label="密码 :">
+                    <el-input v-model="password"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="addEmployee">提交</el-button>
+                    <el-button @click="Close">取消</el-button>
+                </el-form-item>
+            </el-form>
         </div>
     </div>
 </template>
@@ -224,7 +187,6 @@ export default {
             showadd: false,
             showdetail: false,
             showupdate: false,
-            showdelete: false,
             nowEmployeeid: '',
             nowindex: '',//现在指向哪个id
             active: 0,//同一时间只能活跃一个窗口
@@ -267,7 +229,7 @@ export default {
                 this.showadd = true
                 this.active = 1
             }
-            this.showadd = true;
+
         },
         showDetail(id) {
             if (this.active == 0) {
@@ -284,19 +246,12 @@ export default {
                 this.active = 1
             }
             this.nowEmployeeid = nowEmployeeid
+            console.log(this.active);
             this.nowindex = id
 
         },
-        showDelete(id) {
-            if (this.active == 0) {
-                this.showdelete = true
-                this.active = 1
-            }
-            this.nowindex = id
-        },
         Close() {
             this.showdetail = false
-            this.showdelete = false
             this.showupdate = false
             this.showadd = false
             this.active = 0
@@ -455,180 +410,15 @@ li {
 }
 
 .update {
+    background-color: #ffffff;
     position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 25%;
+    left: 32%;
+    /* transform: translate(-50%, -50%); */
     width: 400px;
 }
 
 
-.basic-grey {
-
-    margin-left: auto;
-
-    margin-right: auto;
-
-    max-width: 1000px;
-
-    background: #F7F7F7;
-
-    padding: 25px 15px 25px 10px;
-
-    font: 12px Georgia, "Times New Roman", Times, serif;
-
-    color: #888;
-
-    text-shadow: 1px 1px 1px #FFF;
-
-    border: 1px solid #E4E4E4;
-
-}
-
-.basic-grey h1 {
-
-    font-size: 25px;
-
-    padding: 0px 0px 10px 40px;
-
-    display: block;
-
-    border-bottom: 1px solid #E4E4E4;
-
-    margin: -10px -15px 30px -10px;
-    ;
-
-    color: #888;
-
-}
-
-.basic-grey h1>span {
-
-    display: block;
-
-    font-size: 11px;
-
-}
-
-.basic-grey label {
-
-    display: block;
-
-    margin: 0px;
-
-}
-
-.basic-grey label>span {
-
-    float: left;
-
-    width: 20%;
-
-    text-align: right;
-
-    padding-right: 10px;
-
-    margin-top: 10px;
-
-    color: #888;
-
-}
-
-.basic-grey input[type="text"],
-.basic-grey input[type="email"],
-.basic-grey textarea,
-.basic-grey select {
-
-    border: 1px solid #DADADA;
-
-    color: #888;
-
-    height: 30px;
-
-    margin-bottom: 16px;
-
-    margin-right: 6px;
-
-    margin-top: 2px;
-
-    outline: 0 none;
-
-    padding: 3px 3px 3px 5px;
-
-    width: 70%;
-
-    font-size: 12px;
-
-    line-height: 15px;
-
-    box-shadow: inset 0px 1px 4px #ECECEC;
-
-    -moz-box-shadow: inset 0px 1px 4px #ECECEC;
-
-    -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
-
-}
-
-.basic-grey textarea {
-
-    padding: 5px 3px 3px 5px;
-
-}
-
-.basic-grey select {
-
-    /* background: #FFF url('down-arrow.png') no-repeat right; */
-
-    /* background: #FFF url('down-arrow.png') no-repeat right; */
-
-    appearance: none;
-
-    -webkit-appearance: none;
-
-    -moz-appearance: none;
-
-    text-indent: 0.01px;
-
-    text-overflow: '';
-
-    width: 70%;
-
-    height: 35px;
-
-    line-height: 25px;
-
-}
-
-.basic-grey textarea {
-
-    height: 100px;
-
-}
-
-.basic-grey .button {
-
-    background: #E27575;
-
-    border: none;
-
-    padding: 10px 25px 10px 25px;
-
-    color: #FFF;
-
-    box-shadow: 1px 1px 5px #B6B6B6;
-
-    border-radius: 3px;
-
-    text-shadow: 1px 1px 1px #9E3F3F;
-
-    cursor: pointer;
-
-}
-
-.basic-grey .button:hover {
-
-    background: #CF7A7A
-}
 
 .delete {
     position: absolute;
@@ -676,10 +466,11 @@ li {
 }
 
 .add {
+    background-color: #ffffff;
     position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 25%;
+    left: 32%;
+    /* transform: translate(-50%, -50%); */
     width: 400px;
 }
 

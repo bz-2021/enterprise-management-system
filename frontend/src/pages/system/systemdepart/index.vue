@@ -52,7 +52,7 @@
             </ul>
         </div>
         <div ref='detail' class="detail" :class="{ disappear: !showdetail }">
-            <div class="close" @click="Close">关闭</div>
+            <el-button type="warning" @click="Close" size="small">关闭</el-button>
             <div class="detail-nav">
                 <span>生日</span>
                 <span>电话号码</span>
@@ -94,6 +94,7 @@ export default {
     methods: {
         getDepartEmploy(did) {
             this.alive = true
+            console.log(did);
             this.$store.dispatch('getDepartEmployee', did)
         },
         showDetail(index) {

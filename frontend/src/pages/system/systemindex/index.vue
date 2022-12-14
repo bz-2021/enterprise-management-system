@@ -6,55 +6,42 @@
             <div class="context-detail">{{ self.department }} {{ self.status }}{{ self.name }}，欢迎来到后台管理系统</div>
         </div>
         <div ref="update" class="update" :class="{ disappear: !show }">
-            <div class="close" @click="Close">关闭</div>
-            <form action="" method="post" class="basic-grey">
-                <!-- <%--注意form title中的class就是下文提到的几种样式的名称，引入的时候要自己替换过来 --%> -->
-                <h1>请填写以下信息</h1>
-                <label>
-                    <span>照片URL :</span>
-                    <input id="photo" type="text" name="photo" v-model="photo" />
-                </label>
-                <label>
-                    <span>民族 :</span>
-                    <input id="ethnicity" type="text" name="ethnicity" v-model="ethnicity" />
-                </label>
-                <label>
-                    <span>生日(yyyy-MM-dd) :</span>
-                    <input id="birthday" type="text" name="birthday" v-model="birthday" />
-                </label>
-                <label>
-                    <span>政治面貌 :</span>
-                    <input id="politicalFace" type="text" name="politicalFace" v-model="politicalFace" />
-                </label>
-                <label>
-                    <span>文化程度 :</span>
-                    <input id="education" type="text" name="education" v-model="education" />
-                </label>
-                <label>
-                    <span>身份证号 :</span>
-                    <input id="id_card" type="text" name="id_card" v-model="id_card" />
-                </label>
-                <label>
-                    <span>手机号 :</span>
-                    <input id="phone_number" type="text" name="phone_number" v-model="phone_number" />
-                </label>
-                <label>
-                    <span>电子邮箱 :</span>
-                    <input id="e_mail" type="text" name="e_mail" v-model="e_mail" />
-                </label>
-                <label>
-                    <span>用户名 :</span>
-                    <input id="username" type="text" name="username" v-model="username" />
-                </label>
-                <label>
-                    <span>账户 :</span>
-                    <input id="account" type="text" name="account" v-model="account" />
-                </label>
-                <label>
-                    <span>&nbsp;</span>
-                    <input type="button" class="button" value="提交" @click="submit" />
-                </label>
-            </form>
+            <el-form ref="form" label-width="160px">
+                <el-form-item label="照片URL :">
+                    <el-input v-model="photo"></el-input>
+                </el-form-item>
+                <el-form-item label="民族  :">
+                    <el-input v-model="ethnicity"></el-input>
+                </el-form-item>
+                <el-form-item label="生日(yyyy-MM-dd) :">
+                    <el-input v-model="birthday"></el-input>
+                </el-form-item>
+                <el-form-item label="政治面貌 :">
+                    <el-input v-model="politicalFace"></el-input>
+                </el-form-item>
+                <el-form-item label="文化程度 :">
+                    <el-input v-model="education"></el-input>
+                </el-form-item>
+                <el-form-item label="身份证号 :">
+                    <el-input v-model="id_card"></el-input>
+                </el-form-item>
+                <el-form-item label="手机号 :">
+                    <el-input v-model="phone_number"></el-input>
+                </el-form-item>
+                <el-form-item label="电子邮箱 :">
+                    <el-input v-model="e_mail"></el-input>
+                </el-form-item>
+                <el-form-item label="用户名 :">
+                    <el-input v-model="username"></el-input>
+                </el-form-item>
+                <el-form-item label="账户 :">
+                    <el-input v-model="account"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="submit">提交</el-button>
+                    <el-button @click="Close">取消</el-button>
+                </el-form-item>
+            </el-form>
         </div>
     </div>
 </template>
@@ -69,7 +56,7 @@ export default {
             photo: '', ethnicity: '', birthday: '',
             politicalFace: '', education: '',
             id_card: '', phone_number: '',
-            e_mail: '', username: '', account: ''
+            e_mail: '', username: '', account: '',
         }
     },
     methods: {
@@ -149,10 +136,11 @@ export default {
 }
 
 .update {
+    background-color: #ffffff;
     position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 25%;
+    left: 32%;
+    /* transform: translate(-50%, -50%); */
     width: 400px;
 }
 

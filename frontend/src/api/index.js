@@ -34,8 +34,7 @@ export const reqAddEmployee = (data) => {
         method: "post"
     })
 }
-//开除职员
-//500
+//开除职员 数据库删不掉
 export const reqDelEmployee = (id, token) => {
     return requests({
         url: `/employee/delete/?id=${id}`,
@@ -67,7 +66,6 @@ export const reqModEmployee = (data, token) => {
         }
     })
 }
-//http请求方式: GET
 //获得部门列表
 // URL: http://localhost:8083/department/getlist/
 export const reqGetDepart = (token) => {
@@ -88,5 +86,21 @@ export const reqGetDepartEmployee = (did, token) => {
         headers: {
             'Authorization': `Bearer ${token}`
         }
+    })
+}
+//忘记密码
+// http://localhost:8083/update/password/
+export const reqForgetPassword = (data) => {
+    return requests({
+        url: `/update/password/?email=${data.email}&code=${data.code}&password=${data.password}&confirmedPassword=${data.confirmedPassword} `,
+        method: "post",
+    })
+}
+//发送邮箱验证码
+// URL: http://localhost:8083/verification/email/
+export const reqEmail = (data) => {
+    return requests({
+        url: `/verification/email/?email=${data}`,
+        method: "post",
     })
 }

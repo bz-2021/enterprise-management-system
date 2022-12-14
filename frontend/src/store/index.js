@@ -1,9 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(Vuex);
+Vue.use(ElementUI)
 
 
-import { reqGetList, reqLogin, reqGetme, reqAddEmployee, reqDelEmployee, reqModify, reqModEmployee, reqGetDepart, reqGetDepartEmployee } from "@/api";
+import { reqGetList, reqLogin, reqGetme, reqAddEmployee, reqDelEmployee, reqModify, reqModEmployee, reqGetDepart, reqGetDepartEmployee, reqEmail, reqForgetPassword } from "@/api";
 const state = {
     code: '',
     token: localStorage.getItem('TOKEN'),
@@ -75,10 +78,10 @@ const actions = {
             return Promise.reject(new Error('faile'))
         }
     },
-    //开除雇员
+    //开除雇员 
     async delEmployee({ commit }, data) {
         let result = await reqDelEmployee(data, state.token);
-        if (result.error_message == 'success') {
+        if (result.error_message == 'success' || result.error_message == '该员工已离职') {
             alert("删除成功")
             return 'ok'
         } else {
@@ -114,7 +117,7 @@ const actions = {
     //获得部门信息
     async getDepart({ commit }) {
         let result = await reqGetDepart(state.token);
-        console.log(result);
+        // console.log(result);
         if (result.length > 0) {
             commit('GETDEPART', result)
             return 'ok'
@@ -124,12 +127,31 @@ const actions = {
     //获得部门下雇员    
     async getDepartEmployee({ commit }, data) {
         let result = await reqGetDepartEmployee(data, state.token);
-        console.log(result);
+        // console.log(result);
         if (result.length >= 0) {
             commit('GETDEPARTEMPLOYEE', result)
             return 'ok'
         } else
             return Promise.reject(new Error('faile'))
+    },
+    //发送验证码
+    async getCode({ commit }, data) {
+        let result = await reqEmail(data);
+        console.log(result);
+        if (result.error_message == 'succeess') {
+            return 'ok'
+        } else
+            return Promise.reject(new Error('faile'))
+    },
+    //忘记密码
+    async getNewPassword({ commit }, data) {
+        console.log(data);
+        let result = await reqForgetPassword(data);
+        console.log(result);
+        // if (result.error_message == 'succeess') {
+        //     return 'ok'
+        // } else
+        //     return Promise.reject(new Error('faile'))
     },
 };
 const getter = {};

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
+import store from '@/store'
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
 import Hire from '@/pages/Hire'
@@ -10,7 +11,7 @@ import SystemComplain from '@/pages/system/systemcomplain'
 import SystemIndex from '@/pages/system/systemindex'
 import SystemUser from '@/pages/system/systemuser'
 import SystemDepart from '@/pages/system/systemdepart'
-export default new VueRouter({
+let router = new VueRouter({
     routes: [
         {
             path: "/login",
@@ -68,3 +69,15 @@ export default new VueRouter({
         // }
     ]
 })
+router.beforeEach((to, from, next) => {
+    let token = store.state.token
+    if (token) {
+        //已经登录
+        next()
+    } else {
+        console.log(to.path);
+        if (to.path == "/hire" || to.path == "/login" || to.path == "home")
+            next()
+    }
+})
+export default router
