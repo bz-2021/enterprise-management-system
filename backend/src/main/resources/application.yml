@@ -1,0 +1,14 @@
+spring :
+  mail:
+    host: smtp.sina.com
+    username: oldcattle2022@sina.com
+    password: 19b47d9a8407cf21
+    port: 25
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smth:
+        auth: true
+        strttls:
+          enable: true
+          required: true

@@ -354,24 +354,17 @@ URL: http://localhost:8083/employee/getlist/
 | registTime | 注册时间（yyyy-MM-dd HH:mm:ss） |
 | did | 部门编号 |
 
-#### 忘记密码 ####
+#### 发送邮箱验证码 ####
 
-说明：修改更新用户密码
+说明：为忘记密码验证身份，请求间隔最少120秒
 
-http请求方式: POST
+http请求方式：POST
 
-URL: http://localhost:8083/update/password/
-
-| 参数 | 说明 |
-| :---:| :---: |
-| id | 被更新密码的对象的id |
-| password | 密码 |
-| confirmedPassword | 确认密码 |
-
+URL: http://localhost:8083/verification/email/
 
 | 参数 | 说明 |
 | :---:| :---: |
-| header | 格式"Bearer " + token |
+| email | 邮箱 |
 
 返回参数
 
@@ -383,10 +376,43 @@ error_message的可能返回值
 
 ```
 success
-您没有该权限
-该成员不存在或级别不明，无法更新密码
+该邮箱尚未注册
+请勿重复请求
+未知错误
+```
+
+#### 忘记密码 ####
+
+说明：修改更新用户密码
+
+http请求方式: POST
+
+URL: http://localhost:8083/update/password/
+
+| 参数 | 说明 |
+| :---:| :---: |
+| email | 邮箱 |
+| code | 验证码 |
+| password | 密码 |
+| confirmedPassword | 确认密码 |
+
+返回参数
+
+| 参数 | 说明 |
+| :---:| :---: |
+| error_message | 报错信息 |
+
+error_message的可能返回值
+
+```
+success
+该邮箱尚未注册
+未查询到记录
+请十秒后再试
+验证码错误
+验证码已失效
+验证码无效
 密码不能为空
-密码的长度不能大于30
 两次输入的密码不一致
 ```
 

@@ -2,10 +2,12 @@ D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\mappe
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\impl\account\LoginServiceImpl.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\impl\account\RegisterServiceImpl.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\BackendApplication.java
+D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\impl\verification\SendCodeServiceImpl.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\config\SecurityConfig.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\utils\JwtUtil.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\controller\attendance\GetAttendanceController.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\pojo\Employee.java
+D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\mapper\VerificationMapper.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\attendance\GetAttendanceService.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\pojo\Department.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\config\filter\JwtAuthenticationTokenFilter.java
@@ -15,11 +17,13 @@ D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\servi
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\account\RegisterService.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\utils\AuthorizationUtil.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\controller\employee\UpdateController.java
+D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\pojo\Verification.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\attendance\NewAttendance.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\employee\AddSelfInfoService.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\mapper\EmployeeMapper.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\impl\employee\AddSelfInfoImpl.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\controller\account\LoginController.java
+D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\controller\verification\SendCodeController.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\employee\RemoveEmployeeService.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\mapper\DepartmentMapper.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\impl\attendance\NewAttendanceImpl.java
@@ -29,6 +33,7 @@ D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\contr
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\controller\attendance\NewAttendanceController.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\config\CorsConfig.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\impl\account\GetInfoServiceImpl.java
+D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\verification\SendCodeService.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\controller\employee\GetListController.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\employee\UpdateEmployeeService.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\impl\employee\RemoveEmployeeImpl.java
@@ -43,10 +48,12 @@ D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\servi
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\department\GetThisEmployeeService.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\pojo\Attendance.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\impl\department\GetThisEmployeeImpl.java
+D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\utils\SendEmailUtils.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\impl\attendance\GetAttendanceImpl.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\account\LoginService.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\mapper\AttendanceMapper.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\department\GetDepartmentListService.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\impl\employee\GetEmployeeListImpl.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\service\account\GetInfoService.java
+D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\utils\RandomTools.java
 D:\bz2021\EnterpriseManagementSystem\backend\src\main\java\com\ems\backend\controller\department\GetDepartmentListController.java

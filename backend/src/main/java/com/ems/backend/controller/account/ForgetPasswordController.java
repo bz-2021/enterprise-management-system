@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -17,16 +16,10 @@ public class ForgetPasswordController {
 
     @PostMapping("/update/password/")
     Map<String,String> updatePassword(@RequestParam Map<String, String> data){
-        int id;
-        try{
-            id = Integer.parseInt(data.get("id"));
-        } catch (Exception e){
-            Map<String, String> map = new HashMap<>();
-            map.put("error_message", "无效的Id");
-            return map;
-        }
+        String email = data.get("email");
+        String code = data.get("code");
         String password = data.get("password");
         String confirmedPassword = data.get("confirmedPassword");
-        return forgetPasswordService.updatePassword(id, password, confirmedPassword);
+        return forgetPasswordService.updatePassword(email, code, password, confirmedPassword);
     }
 }

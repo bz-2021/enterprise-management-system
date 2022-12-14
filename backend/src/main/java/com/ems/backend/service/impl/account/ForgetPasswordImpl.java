@@ -1,8 +1,10 @@
 package com.ems.backend.service.impl.account;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ems.backend.mapper.EmployeeMapper;
 import com.ems.backend.pojo.Employee;
 import com.ems.backend.service.account.ForgetPasswordService;
+import com.ems.backend.service.verification.SendCodeService;
 import com.ems.backend.utils.AuthorizationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,19 +21,18 @@ public class ForgetPasswordImpl implements ForgetPasswordService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Override
-    public Map<String, String> updatePassword(Integer id, String password, String confirmedPassword) {
-        Employee employee = AuthorizationUtil.getEmployee();
-        Map<String,String> map = new HashMap<>();
-        Employee tobeUpdated = employeeMapper.selectById(id);
+    @Autowired
+    private SendCodeService sendCodeService;
 
-        try{
-            if(tobeUpdated.getLevel() <= employee.getLevel()){
-                map.put("error_message", "您没有该权限");
-                return map;
-            }
-        } catch (Exception e){
-            map.put("error_message", "该成员不存在或级别不明，无法更新密码");
+    @Override
+    public Map<String, String> updatePassword(String email, String code,String password, String confirmedPassword) {
+        Map<String,String> map = new HashMap<>();
+
+        QueryWrapper<Employee> employeeQueryWrapper = new QueryWrapper<>();
+        employeeQueryWrapper.eq("e_mail", email);
+        Employee employee = employeeMapper.selectOne(employeeQueryWrapper);
+        if(employee == null){
+            map.put("error_message", "该邮箱尚未注册");
             return map;
         }
 
@@ -51,10 +52,12 @@ public class ForgetPasswordImpl implements ForgetPasswordService {
             map.put("error_message", "两次输入的密码不一致");
             return map;
         }
-        String encodedPassword = passwordEncoder.encode(password);
-        tobeUpdated.setPassword(encodedPassword);
-        employeeMapper.updateById(tobeUpdated);
-        map.put("error_message", "success");
+        map = sendCodeService.verifyCode(email, code);
+
+        if(map.get("error_message").equals("success")){
+            employee.setPassword(passwordEncoder.encode(password));
+            employeeMapper.updateById(employee);
+        }
         return map;
     }
 }
