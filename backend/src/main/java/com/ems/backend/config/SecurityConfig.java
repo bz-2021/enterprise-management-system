@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/employee/token/", "/employee/register/", "/verification/email/", "/verification/verify/").permitAll()
+                .antMatchers("/employee/token/", "/employee/register/", "/verification/email/", "/update/password/").permitAll()
                 //.antMatchers("").hasIpAddress("127.0.0.1") // 只允许后端内调用
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated();
