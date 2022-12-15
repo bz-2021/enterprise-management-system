@@ -6,9 +6,9 @@
 					<router-link to="/home">首页</router-link>
 				</span>
 				<span>
-					<router-link class="default_chose" to="/hire"
-						>人才招聘</router-link
-					>
+					<router-link class="default_chose" to="/hire">
+						人才招聘
+					</router-link>
 				</span>
 				<span>
 					<router-link to="/login">登录</router-link>
