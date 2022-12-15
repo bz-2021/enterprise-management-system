@@ -8,7 +8,6 @@
                 <span>
                     <router-link class="default_chose" to="/hire">人才招聘</router-link>
                 </span>
-
                 <span>
                     <router-link to="/login">登录</router-link>
                 </span>
