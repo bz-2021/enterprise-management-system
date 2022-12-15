@@ -29,13 +29,11 @@
 									class="user-input"
 									type="text"
 									name="search"
-									placeholder="请输入岗位名称"
-								/>
+									placeholder="请输入岗位名称" />
 								<input
 									class="user-btn"
 									type="button"
-									value="搜索"
-								/>
+									value="搜索" />
 							</li>
 							<li>
 								<label>所在省</label>
