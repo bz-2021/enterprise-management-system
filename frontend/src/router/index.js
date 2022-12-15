@@ -11,6 +11,7 @@ import SystemComplain from '@/pages/system/systemcomplain'
 import SystemIndex from '@/pages/system/systemindex'
 import SystemUser from '@/pages/system/systemuser'
 import SystemDepart from '@/pages/system/systemdepart'
+import SystemAttendance from '@/pages/system/systemattend'
 let router = new VueRouter({
     routes: [
         {
@@ -59,6 +60,12 @@ let router = new VueRouter({
         {
             path: "/systemdepart",
             component: SystemDepart,
+            meta: { show: true }
+
+        },
+        {
+            path: "/systemattendance",
+            component: SystemAttendance,
             meta: { show: true }
 
         },

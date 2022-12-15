@@ -104,3 +104,24 @@ export const reqEmail = (data) => {
         method: "post",
     })
 }
+// 获取考勤信息
+// URL: http://localhost:8083/get/attendance/
+export const reqGetAttendance = (data, token) => {
+    return requests({
+        url: `/get/attendance/?id=${data} `,
+        method: "post",
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+}
+// http://localhost:8083/update/attendance/
+export const reqUpdateAttendance = (data, token) => {
+    return requests({
+        url: `/get/attendance/?id=${data.id}&status=${data.status} `,
+        method: "post",
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+}

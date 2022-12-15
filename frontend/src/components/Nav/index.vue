@@ -15,6 +15,9 @@
                 <div class="side-item">
                     <router-link to="/systemdepart">部门管理</router-link>
                 </div>
+                <div class="side-item">
+                    <router-link to="/systemattendance">考勤管理</router-link>
+                </div>
             </div>
             <div class="side-news">
                 <div class="side-item-title">资讯管理</div>

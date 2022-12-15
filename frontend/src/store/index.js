@@ -6,7 +6,7 @@ Vue.use(Vuex);
 Vue.use(ElementUI)
 
 
-import { reqGetList, reqLogin, reqGetme, reqAddEmployee, reqDelEmployee, reqModify, reqModEmployee, reqGetDepart, reqGetDepartEmployee, reqEmail, reqForgetPassword } from "@/api";
+import { reqGetList, reqLogin, reqGetme, reqAddEmployee, reqDelEmployee, reqModify, reqModEmployee, reqGetDepart, reqGetDepartEmployee, reqEmail, reqForgetPassword, reqGetAttendance, reqUpdateAttendance } from "@/api";
 const state = {
     code: '',
     token: localStorage.getItem('TOKEN'),
@@ -14,7 +14,8 @@ const state = {
     userlist: {},
     self: {},
     department: {},
-    department_employee: []
+    department_employee: [],
+    attendance: {}
 };
 const mutations = {
     USERLOGIN(state, token) {
@@ -31,6 +32,10 @@ const mutations = {
     },
     GETDEPARTEMPLOYEE(state, employee) {
         state.department_employee = employee
+    },
+    GETATTENDANCE(state, attendance) {
+        console.log(attendance);
+        state.attendance = attendance
     }
 };
 const actions = {
@@ -137,7 +142,7 @@ const actions = {
     //发送验证码
     async getCode({ commit }, data) {
         let result = await reqEmail(data);
-        console.log(result);
+        // console.log(result);
         if (result.error_message == 'succeess') {
             return 'ok'
         } else
@@ -145,13 +150,41 @@ const actions = {
     },
     //忘记密码
     async getNewPassword({ commit }, data) {
-        console.log(data);
+        // console.log(data);
         let result = await reqForgetPassword(data);
-        console.log(result);
-        // if (result.error_message == 'succeess') {
-        //     return 'ok'
-        // } else
-        //     return Promise.reject(new Error('faile'))
+        // console.log(result);
+        if (result.error_message == 'succeess') {
+            return 'ok'
+        } else
+            return Promise.reject(new Error('faile'))
+    },
+    //获取考勤信息
+    async getAttendance({ commit }, data) {
+        // console.log(data);
+        let result = await reqGetAttendance(data, state.token);
+        // console.log(result.error_message);
+        if (result.error_message == 'success') {
+            // console.log(result);
+            commit('GETATTENDANCE', result)
+            return 'ok'
+        } else {
+            alert(result.error_message)
+            return Promise.reject(new Error('faile'))
+        }
+    },
+    //更新考勤
+    async updateAttendance({ commit }, data) {
+        // console.log(data);
+        let result = await reqUpdateAttendance(data, state.token);
+        // console.log(result);
+        if (result.error_message == 'success') {
+            // console.log(result);
+            commit('GETATTENDANCE', result)
+            return '更新成功'
+        } else {
+            alert(result.error_message)
+            return Promise.reject(new Error('faile'))
+        }
     },
 };
 const getter = {};

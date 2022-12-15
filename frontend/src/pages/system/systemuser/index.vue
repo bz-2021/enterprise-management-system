@@ -118,6 +118,7 @@
                 </el-form-item>
             </el-form>
         </div>
+
         <div ref="add" class="add" :class="{ disappear: !showadd }">
             <el-form ref="form" label-width="160px">
                 <el-form-item label="姓名 :">
@@ -270,11 +271,11 @@ export default {
 </script>
 
 <style scoped>
-* {
+/* * {
     margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 a {
     text-decoration: none;
@@ -471,7 +472,7 @@ li {
     top: 25%;
     left: 32%;
     /* transform: translate(-50%, -50%); */
-    width: 400px;
+    width: 500px;
 }
 
 .close {
