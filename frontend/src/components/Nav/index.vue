@@ -1,51 +1,75 @@
 <template>
-    <div>
-        <div class="side">
-            <div class="side-menu">系统管理菜单</div>
+	<div>
+		<div class="card-body">
+			<a class="list-group-item list-group-item-action disabled">
+				<h5>系统管理菜单</h5>
+			</a>
+		</div>
 
-            <div class="side-user">
-                <div class="side-item-title side-choose">用户管理</div>
-                <!-- <div class="side-item"><a href="#">普通用户管理</a></div> -->
-                <div class="side-item">
-                    <router-link to="/systemindex">个人管理</router-link>
-                </div>
-                <div class="side-item">
-                    <router-link to="/systemuser">公司用户管理</router-link>
-                </div>
-                <div class="side-item">
-                    <router-link to="/systemdepart">部门管理</router-link>
-                </div>
-                <div class="side-item">
-                    <router-link to="/systemattendance">考勤管理</router-link>
-                </div>
-            </div>
-            <div class="side-news">
-                <div class="side-item-title">资讯管理</div>
-                <div class="side-item">
-                    <router-link class="side-item" to="/systemannounce">公告管理</router-link>
-                </div>
-                <div class="side-item">
-                    <router-link class="side-item" to="/systemcomplain">投诉管理</router-link>
-                </div>
-            </div>
-            <div class="side-activity">
-                <div class="side-item-title">活动管理</div>
-                <div class="side-item">
-                    <router-link class="side-item" to="/systemacitvity">发起官方活动</router-link>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div class="list-group">
+			<a class="list-group-item list-group-item-action disabled">
+				<b>用户管理</b>
+			</a>
+			<router-link
+				to="/systemindex"
+				class="list-group-item list-group-item-action">
+				个人管理
+			</router-link>
+			<router-link
+				to="/systemuser"
+				class="list-group-item list-group-item-action">
+				公司用户管理
+			</router-link>
+			<router-link
+				to="/systemdepart"
+				class="list-group-item list-group-item-action">
+				部门管理
+			</router-link>
+			<router-link
+				to="/systemattendance"
+				class="list-group-item list-group-item-action">
+				考勤管理
+			</router-link>
+		</div>
+		<div class="card-body"> </div>
+		<div class="list-group">
+			<a class="list-group-item list-group-item-action disabled">
+				<b>资讯管理</b>
+			</a>
+			<router-link
+				to="/systemannounce"
+				class="list-group-item list-group-item-action">
+				公告管理
+			</router-link>
+			<router-link
+				to="/systemcomplain"
+				class="list-group-item list-group-item-action">
+				投诉管理
+			</router-link>
+		</div>
+		<div class="card-body"> </div>
+		<div class="list-group">
+			<a class="list-group-item list-group-item-action disabled">
+				<b>活动管理</b>
+			</a>
+			<router-link
+				to="/systemacitvity"
+				class="list-group-item list-group-item-action">
+				发起官方活动
+			</router-link>
+		</div>
+		<div class="card-body"></div>
+	</div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style scoped>
-.side {
+.list-group {
+}
+/* .side {
     float: left;
     margin-left: 15px;
     margin-top: 20px;
@@ -88,5 +112,5 @@ export default {
 
 .side-activity {
     border-bottom: 2px solid pink;
-}
+} */
 </style>

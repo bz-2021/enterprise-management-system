@@ -6,107 +6,214 @@
 					<router-link to="/home">首页</router-link>
 				</span>
 				<span>
-					<router-link class="default_chose" to="/hire">
-						人才招聘
-					</router-link>
-				</span>
-				<span>
-					<router-link to="/login">登录</router-link>
+					<a href="/login">登录</a>
 				</span>
 			</div>
 		</div>
-		<div class="image">
-			<img src="@/assets/hires_big.jpeg" />
-		</div>
-		<div class="context">
-			<div class="join">
-				<div class="join_title">加入我们</div>
-				<div class="reg-form">
-					<form action="">
-						<ul>
-							<li>
-								<input
-									class="user-input"
-									type="text"
-									name="search"
-									placeholder="请输入岗位名称" />
-								<input
-									class="user-btn"
-									type="button"
-									value="搜索" />
-							</li>
-							<li>
-								<label>所在省</label>
-								<select>
-									<option>山东</option>
-									<option>北京</option>
-									<option>上海</option>
-								</select>
-							</li>
-						</ul>
-					</form>
+		<div
+			class="card"
+			style="
+				width: 90%;
+				margin-left: 5vw;
+				margin-top: 10px;
+				opacity: 95%;
+			">
+			<div class="card-body">
+				<div class="image">
+					<img src="@/assets/hires_big.jpeg" />
 				</div>
+				<div class="row">
+					<div class="col-5"
+						><div class="context">
+							<div class="col">
+								<div class="row-4"
+									><div class="card">
+										<div class="card-body">
+											<div class="text-center">
+												<p>加入我们</p>
+											</div>
+											<div class="reg-form">
+												<form action="">
+													<ul>
+														<li>
+															<input
+																class="user-input"
+																type="text"
+																name="search"
+																placeholder="请输入岗位名称" />
+															<input
+																class="user-btn"
+																type="button"
+																value="搜索" />
+														</li>
+														<div
+															class="card-body"></div>
+														<li>
+															<label
+																style="
+																	width: 100px;
+																"
+																>所在省</label
+															>
+															<select
+																style="
+																	width: 200px;
+																">
+																<option
+																	>山东</option
+																>
+																<option
+																	>北京</option
+																>
+																<option
+																	>上海</option
+																>
+															</select>
+														</li>
+													</ul>
+												</form>
+											</div></div
+										>
+									</div></div
+								>
+							</div>
+							<div class="col">
+								<div class="row-8"
+									><div class="card">
+										<div class="card-body"></div>
+										<div class="text-center">
+											<p>新的职位</p>
+										</div>
+										<div class="job-content">
+											<ul>
+												<li>
+													<div class="card">
+														<div class="card-body">
+															<div class="subbox">
+																<a href="#">
+																	<div
+																		class="subtop">
+																		<p
+																			class="name">
+																			前端开发工程师（山东）
+																		</p>
+																		<span
+																			class="salary"
+																			>15-23K</span
+																		>
+																	</div>
+																	<p
+																		class="job-text"
+																		>5-10年本科</p
+																	>
+																</a>
+																<div
+																	class="commanybox">
+																	<a
+																		href="#"
+																		class="commany-info">
+																		<span
+																			>计算机软件</span
+																		>
+																		<span
+																			>企业服务</span
+																		>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="card">
+														<div class="card-body">
+															<div class="subbox">
+																<a href="#">
+																	<div
+																		class="subtop">
+																		<p
+																			class="name"
+																			>硬件工程师（山东）</p
+																		>
+																		<span
+																			class="salary"
+																			>15-23K</span
+																		>
+																	</div>
+																	<p
+																		class="job-text"
+																		>5-10年本科</p
+																	>
+																</a>
+																<div
+																	class="commanybox">
+																	<a
+																		href="#"
+																		class="commany-info">
+																		<span
+																			>智能硬件</span
+																		>
+																		<span
+																			>企业服务</span
+																		>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="card">
+														<div class="card-body">
+															<div class="subbox">
+																<a href="#">
+																	<div
+																		class="subtop">
+																		<p
+																			class="name">
+																			JAVA研发工程师（山东）
+																		</p>
+																		<span
+																			class="salary"
+																			>15-18K</span
+																		>
+																	</div>
+																	<p
+																		class="job-text"
+																		>3-5年本科</p
+																	>
+																</a>
+																<div
+																	class="commanybox">
+																	<a
+																		href="#"
+																		class="commany-info">
+																		<span
+																			>计算机软件</span
+																		>
+																		<span
+																			>企业服务</span
+																		>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div></div
+									>
+								</div></div
+							>
+						</div>
+					</div></div
+				>
 			</div>
-			<div class="job">
-				<div class="job-title">新的职位</div>
-				<div class="job-content">
-					<ul>
-						<li>
-							<div class="subbox">
-								<a href="#">
-									<div class="subtop">
-										<p class="name">
-											前端开发工程师（山东）
-										</p>
-										<span class="salary">15-23K</span>
-									</div>
-									<p class="job-text">5-10年本科</p>
-								</a>
-								<div class="commanybox">
-									<a href="#" class="commany-info">
-										<span>计算机软件</span>
-										<span>企业服务</span>
-									</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="subbox">
-								<a href="#">
-									<div class="subtop">
-										<p class="name">硬件工程师（山东）</p>
-										<span class="salary">15-23K</span>
-									</div>
-									<p class="job-text">5-10年本科</p>
-								</a>
-								<div class="commanybox">
-									<a href="#" class="commany-info">
-										<span>智能硬件</span>
-										<span>企业服务</span>
-									</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="subbox">
-								<a href="#">
-									<div class="subtop">
-										<p class="name">
-											JAVA研发工程师（山东）
-										</p>
-										<span class="salary">15-18K</span>
-									</div>
-									<p class="job-text">3-5年本科</p>
-								</a>
-								<div class="commanybox">
-									<a href="#" class="commany-info">
-										<span>计算机软件</span>
-										<span>企业服务</span>
-									</a>
-								</div>
-							</div>
-						</li>
-					</ul>
+			<div class="row">
+				<div class="col-7">
+					<div class="card">
+						<div class="card-body"></div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -117,13 +224,16 @@
 export default {};
 </script>
 
-<style>
+<style scpoed>
 * {
 	margin: 0 auto;
 	padding: 0;
 	box-sizing: border-box;
 }
-
+.card {
+	margin-top: 10px;
+	margin-right: 10px;
+}
 li {
 	list-style-type: none;
 }
@@ -134,21 +244,22 @@ a {
 }
 
 a:hover {
-	color: red;
-	border-bottom: 1px solid red;
+	color: rgb(0, 217, 255);
+	border-bottom: 1px solid rgb(0, 221, 255);
 }
 
 .navbar {
-	height: 30px;
+	height: 50px;
 	background-color: rgb(241, 241, 241);
 }
 
 .navbar > .nav {
 	float: right;
+	margin-left: 5vw;
 }
 
 .navbar > .nav > span {
-	margin-left: 15px;
+	margin-left: 5vw;
 	padding-right: 50px;
 	color: rgb(102, 102, 102);
 	border-radius: 5px;
@@ -162,8 +273,8 @@ a:hover {
 
 img {
 	display: block;
-	width: 1510px;
-	height: 500px;
+	width: 1400px;
+	height: 480px;
 }
 
 .join {
@@ -176,7 +287,6 @@ img {
 
 .context > .join > .join_title {
 	float: left;
-	margin-left: 20px;
 	margin-top: 3px;
 	font-size: large;
 	font-weight: 500;
@@ -204,13 +314,13 @@ img {
 	font-size: 20px;
 }
 
-.job {
+/* .job {
 	margin-top: 5px;
 	float: right;
 }
 
 .job-title {
-	margin-left: 20px;
+	margin-left: 200px;
 	margin-top: 3px;
 	font-size: large;
 	font-weight: 500;
@@ -218,22 +328,22 @@ img {
 }
 
 .job-content {
-	width: 1000px;
+	width: 400px;
 }
 
 .job-content > ul li {
 	height: 130px;
-	width: 750px;
+	width: 400px;
 	float: left;
-	margin: 30px 14px 16px 170px;
+	margin: 30px 14px 16px 300px;
 	background: #fff;
 	border: 1px solid #eef0f5;
-}
+} */
 
 .subbox {
 	display: block;
 	height: 130px;
-	width: 750px;
+	width: 400px;
 
 	padding: 16px 20px;
 	box-sizing: border-box;
