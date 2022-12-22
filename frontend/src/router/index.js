@@ -11,7 +11,7 @@ import SystemUser from "@/pages/system/systemuser";
 import SystemDepart from "@/pages/system/systemdepart";
 import SystemAttendance from "@/pages/system/systemattend";
 let router = new VueRouter({
-	mode: "history",
+	mode: "hash",
 	routes: [
 		{
 			path: "/",
@@ -76,7 +76,7 @@ let router = new VueRouter({
 	],
 });
 router.beforeEach((to, from, next) => {
-	let token = localStorage.getItem("TOKEN");
+	let token = sessionStorage.getItem("TOKEN");
 	if (token) {
 		//已经登录
 		console.log("success");
