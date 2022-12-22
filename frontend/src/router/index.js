@@ -11,7 +11,7 @@ import SystemUser from "@/pages/system/systemuser";
 import SystemDepart from "@/pages/system/systemdepart";
 import SystemAttendance from "@/pages/system/systemattend";
 let router = new VueRouter({
-	mode: "hash",
+	mode: "history",
 	routes: [
 		{
 			path: "/",
