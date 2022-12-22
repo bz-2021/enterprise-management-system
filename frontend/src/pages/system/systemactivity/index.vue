@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="hello">
 		<div class="context-title">发布活动</div>
 		<div class="context">
 			<div class="context-nav">
@@ -71,6 +71,9 @@ export default {};
 	margin: 0 auto;
 	padding: 0;
 	box-sizing: border-box;
+}
+.hello {
+	height: 630px;
 }
 
 a {

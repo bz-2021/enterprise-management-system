@@ -16,21 +16,21 @@
 				width: 90%;
 				margin-left: 5vw;
 				margin-top: 10px;
-				opacity: 95%;
+				opacity: 92%;
 			">
 			<div class="card-body">
 				<div class="image">
 					<img src="@/assets/hires_big.jpeg" />
 				</div>
-				<div class="row">
-					<div class="col-5"
-						><div class="context">
+				<div class="row" style="margin-top: 20px">
+					<div class="col-5">
+						<div class="context">
 							<div class="col">
-								<div class="row-4"
-									><div class="card">
+								<div class="row-4">
+									<div class="card">
 										<div class="card-body">
 											<div class="text-center">
-												<p>加入我们</p>
+												<h3>加入我们</h3>
 											</div>
 											<div class="reg-form">
 												<form action="">
@@ -72,17 +72,17 @@
 														</li>
 													</ul>
 												</form>
-											</div></div
-										>
-									</div></div
-								>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="col">
 								<div class="row-8"
 									><div class="card">
 										<div class="card-body"></div>
 										<div class="text-center">
-											<p>新的职位</p>
+											<h3>新的职位</h3>
 										</div>
 										<div class="job-content">
 											<ul>
@@ -95,16 +95,16 @@
 																		class="subtop">
 																		<p
 																			class="name">
-																			前端开发工程师（山东）
+																			前端开发工程师（理塘）
 																		</p>
 																		<span
 																			class="salary"
-																			>15-23K</span
+																			>5-8K</span
 																		>
 																	</div>
 																	<p
 																		class="job-text"
-																		>5-10年本科</p
+																		>大专及以上</p
 																	>
 																</a>
 																<div
@@ -206,13 +206,175 @@
 								</div></div
 							>
 						</div>
-					</div></div
-				>
-			</div>
-			<div class="row">
-				<div class="col-7">
-					<div class="card">
-						<div class="card-body"></div>
+					</div>
+					<div class="col-7">
+						<div class="card ienews">
+							<div class="card-body">
+								<div class="row">
+									<thead
+										><h3
+											>机电与信息工程学院通知公告</h3
+										></thead
+									>
+									<table class="newslist">
+										<tbody>
+											<tr>
+												<td
+													style="
+														padding: 10px 1px;
+														font-size: 16px;
+													">
+													<a
+														href="https://ie.wh.sdu.edu.cn/info/1031/9771.htm"
+														title="关于2022-2023-2学期新选用教材审核通过的公示"
+														>关于2022-2023-2学期新选用教材审核通过的公示</a
+													>
+												</td>
+												<td width="40" align="center">
+													<span
+														style="font-size: 14px"
+														>12-13</span
+													>
+												</td>
+											</tr>
+											<tr>
+												<td
+													style="
+														padding: 10px 1px;
+														font-size: 16px;
+													">
+													<a
+														href="https://ie.wh.sdu.edu.cn/info/1031/9741.htm"
+														title="关于举办第十八届（2023年）山东大学（威海）大学生机电产品创新设计竞赛的预通知"
+														>关于举办第十八届（2023年）山东大学（威海）大学生机电产品创新设计竞赛的预通知</a
+													>
+												</td>
+												<td width="40" align="center">
+													<span
+														style="font-size: 14px"
+														>12-07</span
+													>
+												</td>
+											</tr>
+											<tr>
+												<td
+													style="
+														padding: 10px 1px;
+														font-size: 16px;
+													">
+													<a
+														href="https://ie.wh.sdu.edu.cn/info/1031/9672.htm"
+														title="关于举办山东大学（威海）第九届成才杯·​第二届“元宇宙+”创意设计比赛的通知"
+														>关于举办山东大学（威海）第九届成才杯·​第二届“元宇宙+”创意设计比赛的通知</a
+													>
+												</td>
+												<td width="40" align="center">
+													<span
+														style="font-size: 14px"
+														>11-28</span
+													>
+												</td>
+											</tr>
+											<tr>
+												<td
+													style="
+														padding: 10px 1px;
+														font-size: 16px;
+													">
+													<a
+														href="https://ie.wh.sdu.edu.cn/info/1031/9631.htm"
+														title="关于组织申报机电学院第二届本科生创新创业项目的通知"
+														>关于组织申报机电学院第二届本科生创新创业项目的通知</a
+													>
+												</td>
+												<td width="40" align="center">
+													<span
+														style="font-size: 14px"
+														>11-24</span
+													>
+												</td>
+											</tr>
+											<tr>
+												<td
+													style="
+														padding: 10px 1px;
+														font-size: 16px;
+													">
+													<a
+														href="https://ie.wh.sdu.edu.cn/info/1031/9609.htm"
+														title="第十六届全国大学生软件创新大赛校内选拔赛开赛通知"
+														>第十六届全国大学生软件创新大赛校内选拔赛开赛通知</a
+													>
+												</td>
+												<td width="40" align="center">
+													<span
+														style="font-size: 14px"
+														>11-21</span
+													>
+												</td>
+											</tr>
+											<tr>
+												<td
+													style="
+														padding: 10px 1px;
+														font-size: 16px;
+													">
+													<a
+														href="https://ie.wh.sdu.edu.cn/info/1031/9592.htm"
+														title="校园招聘/宣讲会预告（11.21—11.28）第十二周"
+														>校园招聘/宣讲会预告（11.21—11.28）第十二周</a
+													>
+												</td>
+												<td width="40" align="center">
+													<span
+														style="font-size: 14px"
+														>11-21</span
+													>
+												</td>
+											</tr>
+											<tr>
+												<td
+													style="
+														padding: 10px 1px;
+														font-size: 16px;
+													">
+													<a
+														href="https://ie.wh.sdu.edu.cn/info/1031/9582.htm"
+														title="机电与信息工程学院秋季学期转专业面试通知"
+														>机电与信息工程学院秋季学期转专业面试通知</a
+													>
+												</td>
+												<td width="40" align="center">
+													<span
+														style="font-size: 14px"
+														>11-20</span
+													>
+												</td>
+											</tr>
+											<tr>
+												<td
+													style="
+														padding: 10px 1px;
+														font-size: 16px;
+													">
+													<a
+														href="https://jwc.wh.sdu.edu.cn/nry.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1035&amp;wbnewsid=13793"
+														title="关于举办2022年山东大学程序设计精英挑战赛的通知"
+														>关于举办2022年山东大学程序设计精英挑战赛的通知</a
+													>
+												</td>
+												<td width="40" align="center">
+													<span
+														style="font-size: 14px"
+														>11-14</span
+													>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

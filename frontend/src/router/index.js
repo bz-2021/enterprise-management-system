@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 import Login from "@/pages/Login/index2.vue";
-import Home from "@/pages/Home";
 import Hire from "@/pages/Hire";
 import SystemActivity from "@/pages/system/systemactivity";
 import SystemAnnounce from "@/pages/system/systemannouce";
@@ -16,7 +15,7 @@ let router = new VueRouter({
 	routes: [
 		{
 			path: "/",
-			redirect: "/home",
+			redirect: "/hire",
 			meta: { show: false },
 		},
 		{

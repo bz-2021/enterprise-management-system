@@ -11,7 +11,7 @@
 					</div>
 				</div>
 				<div class="floor2">
-					<div class="card">
+					<div class="card" v-if="!this.forget">
 						<div class="card-body">
 							<div class="text-center">
 								<h4>账号登录</h4>
@@ -69,7 +69,7 @@
 
 									<div class="col">
 										<!-- Simple link -->
-										<a @click="forgetpassword"
+										<a type="button" @click="forgetpassword"
 											>Forgot password?</a
 										>
 									</div>
@@ -85,6 +85,92 @@
 								</button>
 								<div style="height: 10px"></div>
 							</form>
+						</div>
+					</div>
+					<div class="card" v-else>
+						<div class="card-body">
+							<button
+								style="margin-left: 0px"
+								type="button"
+								class="btn btn-outline-primary btn-sm"
+								@click="Close">
+								Back
+							</button>
+							<el-form
+								:inline="true"
+								class="demo-form-inline positon">
+								<el-input
+									type="password"
+									hidden
+									autocomplete="“new-password”"></el-input>
+								<el-form-item label="请输入邮箱：">
+									<el-input
+										type="email"
+										style="width: 240px"
+										placeholder=""
+										v-model="e_mail"></el-input>
+								</el-form-item>
+								<el-form-item>
+									<button
+										style="width: 150%; margin-left: 60px"
+										type="button"
+										class="btn btn-outline-primary btn-md"
+										@click="sendCode">
+										发送验证码
+									</button>
+								</el-form-item>
+
+								<el-form-item label="请输入验证码">
+									<el-input
+										type="text"
+										style="width: 240px"
+										placeholder=""
+										v-model="code"></el-input>
+								</el-form-item>
+								<el-form-item label="请输入密码：">
+									<el-input
+										type="password"
+										style="width: 240px"
+										placeholder=""
+										v-model="fpassword"></el-input>
+								</el-form-item>
+								<el-form-item label="请确认密码：">
+									<el-input
+										type="password"
+										style="width: 240px"
+										placeholder=""
+										v-model="confirmedPassword"></el-input>
+								</el-form-item>
+								<el-form-item>
+									<button
+										style="width: 200%; margin-left: 60px"
+										type="button"
+										class="btn btn-outline-primary btn-md"
+										@click="submitCode">
+										提交
+									</button>
+								</el-form-item>
+							</el-form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="floor3" style="margin-left: 20vw; margin-top: 75vh">
+				<div class="card-footer">
+					<div class="team">
+						<div class="team">
+							<span style="font-size: 18px">前端:</span>
+							<span>尹冠宇</span>
+							<span>白阳烨</span>
+							<span style="font-size: 18px">数据库:</span>
+							<span>方宁</span>
+							<span>牛丙钊</span>
+							<span style="font-size: 18px">后端:</span>
+							<span>徐奥峰</span>
+							<span>任翔宇</span>
+							<span style="font-size: 18px; color: white">
+								版权所有 Copyright@2022</span
+							>
 						</div>
 					</div>
 				</div>
@@ -104,7 +190,30 @@ export default {
 			e_mail: "",
 			code: "",
 			fpassword: "",
+			confirmedPassword: "",
 		};
+	},
+	setup() {
+		onMounted(() => {
+			var bg = [];
+			bg[0] =
+				"https://pass.sdu.edu.cn/cas/comm/sdu/image/login_container_bg_03.jpg";
+			bg[1] =
+				"https://pass.sdu.edu.cn/cas/comm/sdu/image/login_container_bg_04.jpg";
+			bg[2] =
+				"https://pass.sdu.edu.cn/cas/comm/sdu/image/login_container_bg_06.jpg";
+			bg[3] =
+				"https://pass.sdu.edu.cn/cas/comm/sdu/image/login_container_bg_07.jpg";
+			bg[4] =
+				"https://pass.sdu.edu.cn/cas/comm/sdu/image/login_container_bg_01.jpg";
+			bg[5] =
+				"https://pass.sdu.edu.cn/cas/comm/sdu/image/login_container_bg_08.jpg";
+			var randomIndex = Math.round(Math.random() * 6);
+
+			var body = document.querySelector(".login_conatiner");
+			//随机的背景图
+			body.style.background = "url(" + bg[randomIndex] + ")";
+		});
 	},
 	methods: {
 		async Loginin() {
@@ -122,6 +231,7 @@ export default {
 		},
 		forgetpassword() {
 			this.forget = true;
+			console.log(this.forget);
 		},
 		Close() {
 			this.forget = false;
@@ -129,17 +239,26 @@ export default {
 		sendCode() {
 			if (this.e_mail) {
 				this.$store.dispatch("getCode", this.e_mail);
+			} else {
+				alert("邮箱不能为空");
 			}
 		},
 		submitCode() {
-			if (this.e_mail && this.code && this.fpassword) {
+			if (
+				this.e_mail &&
+				this.code &&
+				this.fpassword &&
+				this.confirmedPassword
+			) {
 				var data = {
 					email: this.e_mail,
 					code: this.code,
 					password: this.fpassword,
-					confirmedPassword: this.fpassword,
+					confirmedPassword: this.confirmedPassword,
 				};
 				this.$store.dispatch("getNewPassword", data);
+			} else {
+				alert("必填项不能为空");
 			}
 		},
 	},
@@ -149,6 +268,16 @@ export default {
 <style scpoed>
 * {
 	box-sizing: content-box;
+}
+#staticBackdrop .modal-dialog {
+	/* 遮罩层z-index值1040 */
+	z-index: 1080;
+}
+
+.team > span {
+	margin-left: 2%;
+	font-size: 25px;
+	color: yellow;
 }
 .btn-outline-danger {
 	width: 90%;

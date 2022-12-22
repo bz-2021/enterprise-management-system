@@ -1,9 +1,125 @@
 <template>
 	<div class="hello">
-		<div class="context-title">公司用户管理</div>
-		<div class="context-add" @click="showAdd"
-			><a href="#">增添员工</a>
+		<div class="row">
+			<div class="col-3">
+				<div class="card-body">
+					<h3> 公司用户管理 </h3>
+				</div>
+			</div>
+			<div class="col-4"></div>
+			<div class="col-2">
+				<button
+					type="button"
+					style="width: 105%"
+					class="btn btn-outline-warning btn-lg"
+					data-bs-toggle="modal"
+					data-bs-target="#addemployee">
+					增添员工
+				</button>
+			</div>
+			<div class="col-3"> </div>
 		</div>
+
+		<div
+			class="modal fade"
+			id="addemployee"
+			aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-body">
+						<el-form
+							ref="form"
+							tabindex=""
+							label-width="200px"
+							label-font="30px"
+							id="selectForm"
+							style="margin-top: 5%">
+							<el-form-item label="姓名 :">
+								<el-input
+									v-model="myname"
+									type="name"></el-input>
+							</el-form-item>
+							<el-form-item label="级别 :">
+								<el-input v-model="level"></el-input>
+							</el-form-item>
+							<el-form-item label="职位 :">
+								<el-input v-model="status"></el-input>
+							</el-form-item>
+							<el-form-item label="性别 :">
+								<el-input v-model="gender"></el-input>
+							</el-form-item>
+							<el-form-item label="照片URL :">
+								<el-input v-model="photo"></el-input>
+							</el-form-item>
+							<el-form-item label="民族  :">
+								<el-input v-model="ethnicity"></el-input>
+							</el-form-item>
+							<el-form-item label="生日(yyyy-MM-dd) :">
+								<el-input v-model="birthday"></el-input>
+							</el-form-item>
+							<el-form-item label="政治面貌 :">
+								<el-input v-model="politicalFace"></el-input>
+							</el-form-item>
+							<el-form-item label="文化程度 :">
+								<el-input v-model="education"></el-input>
+							</el-form-item>
+							<el-form-item label="身份证号 :">
+								<el-input v-model="id_card"></el-input>
+							</el-form-item>
+							<el-form-item label="手机号 :">
+								<el-input v-model="phone_number"></el-input>
+							</el-form-item>
+							<el-form-item label="电子邮箱 :">
+								<el-input v-model="e_mail"></el-input>
+							</el-form-item>
+							<el-form-item label="用户名 :">
+								<el-input v-model="username"></el-input>
+							</el-form-item>
+							<el-form-item label="账户 :">
+								<el-input v-model="account"></el-input>
+							</el-form-item>
+							<el-form-item label="部门编号 :">
+								<el-input v-model="did"></el-input>
+							</el-form-item>
+							<el-form-item label="密码 :">
+								<el-input
+									v-model="password"
+									type="password"></el-input>
+							</el-form-item>
+							<el-form-item label="确认密码 :">
+								<el-input
+									v-model="comfirmedpassword"
+									type="password"></el-input>
+							</el-form-item>
+						</el-form>
+					</div>
+					<div class="row btnrow">
+						<div class="col-1"></div>
+						<div class="col-5"
+							><button
+								type="button"
+								class="btn btn-primary btn-lg submitbtn"
+								data-bs-dismiss="modal"
+								@click="addEmployee"
+								>提交
+							</button>
+						</div>
+						<div class="col-5"
+							><button
+								type="button"
+								class="btn btn-secondary btn-lg submitbtn"
+								data-bs-dismiss="modal"
+								@click="Close"
+								>取消
+							</button>
+						</div>
+						<div class="col-1"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<table class="table table-bordered" style="width: 96%; margin-top: 4vh">
 			<thead>
 				<tr>
@@ -31,218 +147,236 @@
 					<td>{{ item.politicalFace }}</td>
 					<td>{{ item.ethnicity }}</td>
 					<td>
-						<a href="#" @click="showDetail(index)">详情 </a>
-						<a href="#" @click="showUpdate(index, item.id)">
+						<button
+							type="button"
+							style="width: 25%"
+							class="btn btn-outline-primary btn-sm"
+							data-bs-toggle="modal"
+							:data-bs-target="'#showDetail-' + index">
+							详情
+						</button>
+						<button
+							type="button"
+							style="width: 25%"
+							class="btn btn-outline-warning btn-sm"
+							data-bs-toggle="modal"
+							:data-bs-target="'#updateemployee-' + index">
 							编辑
-						</a>
+						</button>
+						<button
+							type="button"
+							style="width: 25%"
+							class="btn btn-outline-danger btn-sm"
+							data-bs-toggle="modal"
+							data-bs-target="#deleteEmployee">
+							删除
+						</button>
 
-						<el-popover placement="top" width="160">
-							<p>确定删除吗？</p>
-							<div style="text-align: right; margin: 0">
-								<el-button
-									type="primary"
-									size="mini"
-									@click="delteEmployee(item.id)"
-									>确定</el-button
-								>
+						<!-- Modal -->
+						<div
+							class="modal fade"
+							id="deleteEmployee"
+							tabindex="-1"
+							aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h1
+											class="modal-title fs-5"
+											id="exampleModalLabel"
+											>警告</h1
+										>
+										<button
+											type="button"
+											class="btn-close"
+											data-bs-dismiss="modal"
+											aria-label="Close"></button>
+									</div>
+									<div class="modal-body"
+										>你确定要删除吗？</div
+									>
+									<div class="modal-footer">
+										<button
+											type="button"
+											class="btn btn-secondary"
+											data-bs-dismiss="modal"
+											>Close</button
+										>
+										<button
+											type="button"
+											class="btn btn-danger"
+											@click="delteEmployee(item.id)"
+											>Save changes</button
+										>
+									</div>
+								</div>
 							</div>
-							<a slot="reference">删除</a>
-						</el-popover>
+						</div>
 					</td>
+					<div
+						class="modal fade"
+						:id="'showDetail-' + index"
+						aria-labelledby="exampleModalLabel"
+						aria-hidden="true"
+						style="margin-top: 5%">
+						<div class="modal-dialog modal-dialog-scrollable">
+							<div class="modal-content">
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-4"
+											><div class="detail-nav">
+												<div>生日</div>
+												<div>电话号码</div>
+												<div>部门</div>
+												<div>电子邮箱</div>
+												<div>用户名</div>
+												<div>账户</div>
+												<div>密码</div>
+												<div>注册时间</div>
+											</div></div
+										>
+										<div class="col-8"
+											><div class="detail-item">
+												<div>{{ item.birthday }}</div>
+												<div>{{
+													item.phoneNumber
+												}}</div>
+												<div>{{ item.did }}</div>
+												<div>{{ item.email }}</div>
+												<div>{{ item.userName }}</div>
+												<div>{{ item.account }}</div>
+												<div>{{ item.password }}</div>
+												<div>{{ item.registTime }}</div>
+											</div></div
+										>
+									</div>
+								</div>
+								<div class="row btnrow" style="margin-top: 3%">
+									<div class="col-3"></div>
+									<div class="col-6"
+										><button
+											type="button"
+											class="btn btn-secondary btn-lg submitbtn"
+											data-bs-dismiss="modal"
+											@click="Close"
+											>取消
+										</button>
+									</div>
+									<div class="col-3"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						class="modal fade"
+						:id="'updateemployee-' + index"
+						aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-dialog-scrollable">
+							<div class="modal-content">
+								<div class="modal-body">
+									<el-form
+										ref="form"
+										tabindex=""
+										label-width="200px"
+										label-font="30px"
+										id="selectForm"
+										style="margin-top: 5%">
+										<el-form-item label="姓名 :">
+											<el-input
+												v-model="myname"></el-input>
+										</el-form-item>
+										<el-form-item label="级别 :">
+											<el-input
+												v-model="level"></el-input>
+										</el-form-item>
+										<el-form-item label="职位 :">
+											<el-input
+												v-model="status"></el-input>
+										</el-form-item>
+										<el-form-item label="性别 :">
+											<el-input
+												v-model="gender"></el-input>
+										</el-form-item>
+										<el-form-item label="照片URL :">
+											<el-input
+												v-model="photo"></el-input>
+										</el-form-item>
+										<el-form-item label="民族  :">
+											<el-input
+												v-model="ethnicity"></el-input>
+										</el-form-item>
+										<el-form-item
+											label="生日(yyyy-MM-dd) :">
+											<el-input
+												v-model="birthday"></el-input>
+										</el-form-item>
+										<el-form-item label="政治面貌 :">
+											<el-input
+												v-model="
+													politicalFace
+												"></el-input>
+										</el-form-item>
+										<el-form-item label="文化程度 :">
+											<el-input
+												v-model="education"></el-input>
+										</el-form-item>
+										<el-form-item label="身份证号 :">
+											<el-input
+												v-model="id_card"></el-input>
+										</el-form-item>
+										<el-form-item label="手机号 :">
+											<el-input
+												v-model="
+													phone_number
+												"></el-input>
+										</el-form-item>
+										<el-form-item label="电子邮箱 :">
+											<el-input
+												v-model="e_mail"></el-input>
+										</el-form-item>
+										<el-form-item label="用户名 :">
+											<el-input
+												v-model="username"></el-input>
+										</el-form-item>
+										<el-form-item label="账户 :">
+											<el-input
+												v-model="account"></el-input>
+										</el-form-item>
+										<el-form-item label="部门编号 :">
+											<el-input v-model="did"></el-input>
+										</el-form-item>
+									</el-form>
+								</div>
+								<div class="row btnrow">
+									<div class="col-1"></div>
+									<div class="col-5"
+										><button
+											type="button"
+											class="btn btn-primary btn-lg submitbtn"
+											data-bs-dismiss="modal"
+											@click="modifyEmployee"
+											>提交
+										</button>
+									</div>
+									<div class="col-5"
+										><button
+											type="button"
+											class="btn btn-secondary btn-lg submitbtn"
+											data-bs-dismiss="modal"
+											@click="Close"
+											>取消
+										</button>
+									</div>
+									<div class="col-1"></div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</tr>
 			</tbody>
 		</table>
-		<!-- <div class="context">
-			<div class="context-nav">
-				<span>员工ID</span>
-				<span>姓名</span>
-				<span>级别</span>
-				<span>职位</span>
-				<span>性别</span>
-				<span>文化程度</span>
-				<span>照片</span>
-				<span>政治面貌</span>
-				<span>民族</span>
-				<div>操作</div>
-			</div>
-			<ul>
-				<li class="item" v-for="(item, index) in userlist">
-					<div>{{ item.id }}</div>
-					<div>{{ item.name }}</div>
-					<div>{{ item.level }}</div>
-					<div>{{ item.status }}</div>
-					<div>{{ item.gender }}</div>
-					<div>{{ item.education }}</div>
-					<div>{{ item.photo }}</div>
-					<div>{{ item.politicalFace }}</div>
-					<div>{{ item.ethnicity }}</div>
-					<div class="operation">
-						<div
-							><a href="#" @click="showDetail(index)"
-								>详情</a
-							></div
-						>
-						<div
-							><a href="#" @click="showUpdate(index, item.id)"
-								>编辑</a
-							></div
-						>
-						<el-popover placement="top" width="160">
-							<p>确定删除吗？</p>
-							<div style="text-align: right; margin: 0">
-								<el-button
-									type="primary"
-									size="mini"
-									@click="delteEmployee(item.id)"
-									>确定</el-button
-								>
-							</div>
-							<a slot="reference">删除</a>
-						</el-popover>
-					</div>
-				</li>
-			</ul>
-		</div> -->
-
-		<div ref="detail" class="detail" :class="{ disappear: !showdetail }">
-			<el-button type="warning" @click="Close" size="small"
-				>关闭</el-button
-			>
-			<div class="detail-nav">
-				<span>生日</span>
-				<span>电话号码</span>
-				<span>部门</span>
-				<span>电子邮箱</span>
-				<span>用户名</span>
-				<span>账户</span>
-				<span>密码</span>
-				<span>注册时间</span>
-			</div>
-			<div class="detail-item">
-				<div>{{ user.birthday }}</div>
-				<div>{{ user.phoneNumber }}</div>
-				<div>{{ user.did }}</div>
-				<div>{{ user.email }}</div>
-				<div>{{ user.userName }}</div>
-				<div>{{ user.account }}</div>
-				<div>{{ user.password }}</div>
-				<div>{{ user.registTime }}</div>
-			</div>
-		</div>
-		<div ref="update" class="update" :class="{ disappear: !showupdate }">
-			<el-form ref="form" label-width="160px">
-				<el-form-item label="姓名 :">
-					<el-input v-model="myname"></el-input>
-				</el-form-item>
-				<el-form-item label="级别 :">
-					<el-input v-model="level"></el-input>
-				</el-form-item>
-				<el-form-item label="职位 :">
-					<el-input v-model="status"></el-input>
-				</el-form-item>
-				<el-form-item label="性别 :">
-					<el-input v-model="gender"></el-input>
-				</el-form-item>
-				<el-form-item label="照片URL :">
-					<el-input v-model="photo"></el-input>
-				</el-form-item>
-				<el-form-item label="民族  :">
-					<el-input v-model="ethnicity"></el-input>
-				</el-form-item>
-				<el-form-item label="生日(yyyy-MM-dd) :">
-					<el-input v-model="birthday"></el-input>
-				</el-form-item>
-				<el-form-item label="政治面貌 :">
-					<el-input v-model="politicalFace"></el-input>
-				</el-form-item>
-				<el-form-item label="文化程度 :">
-					<el-input v-model="education"></el-input>
-				</el-form-item>
-				<el-form-item label="身份证号 :">
-					<el-input v-model="id_card"></el-input>
-				</el-form-item>
-				<el-form-item label="手机号 :">
-					<el-input v-model="phone_number"></el-input>
-				</el-form-item>
-				<el-form-item label="电子邮箱 :">
-					<el-input v-model="e_mail"></el-input>
-				</el-form-item>
-				<el-form-item label="用户名 :">
-					<el-input v-model="username"></el-input>
-				</el-form-item>
-				<el-form-item label="账户 :">
-					<el-input v-model="account"></el-input>
-				</el-form-item>
-				<el-form-item label="部门编号 :">
-					<el-input v-model="did"></el-input>
-				</el-form-item>
-				<el-form-item>
-					<el-button type="primary" @click="modifyEmployee"
-						>提交</el-button
-					>
-					<el-button @click="Close">取消</el-button>
-				</el-form-item>
-			</el-form>
-		</div>
-
-		<div ref="add" class="add" :class="{ disappear: !showadd }">
-			<el-form ref="form" label-width="160px">
-				<el-form-item label="姓名 :">
-					<el-input v-model="myname"></el-input>
-				</el-form-item>
-				<el-form-item label="级别 :">
-					<el-input v-model="level"></el-input>
-				</el-form-item>
-				<el-form-item label="职位 :">
-					<el-input v-model="status"></el-input>
-				</el-form-item>
-				<el-form-item label="性别 :">
-					<el-input v-model="gender"></el-input>
-				</el-form-item>
-				<el-form-item label="照片URL :">
-					<el-input v-model="photo"></el-input>
-				</el-form-item>
-				<el-form-item label="民族  :">
-					<el-input v-model="ethnicity"></el-input>
-				</el-form-item>
-				<el-form-item label="生日(yyyy-MM-dd) :">
-					<el-input v-model="birthday"></el-input>
-				</el-form-item>
-				<el-form-item label="政治面貌 :">
-					<el-input v-model="politicalFace"></el-input>
-				</el-form-item>
-				<el-form-item label="文化程度 :">
-					<el-input v-model="education"></el-input>
-				</el-form-item>
-				<el-form-item label="身份证号 :">
-					<el-input v-model="id_card"></el-input>
-				</el-form-item>
-				<el-form-item label="手机号 :">
-					<el-input v-model="phone_number"></el-input>
-				</el-form-item>
-				<el-form-item label="电子邮箱 :">
-					<el-input v-model="e_mail"></el-input>
-				</el-form-item>
-				<el-form-item label="用户名 :">
-					<el-input v-model="username"></el-input>
-				</el-form-item>
-				<el-form-item label="账户 :">
-					<el-input v-model="account"></el-input>
-				</el-form-item>
-				<el-form-item label="部门编号 :">
-					<el-input v-model="did"></el-input>
-				</el-form-item>
-				<el-form-item label="密码 :">
-					<el-input v-model="password"></el-input>
-				</el-form-item>
-				<el-form-item>
-					<el-button type="primary" @click="addEmployee"
-						>提交</el-button
-					>
-					<el-button @click="Close">取消</el-button>
-				</el-form-item>
-			</el-form>
-		</div>
 	</div>
 </template>
 
@@ -276,6 +410,7 @@ export default {
 			account: "",
 			did: "",
 			password: "",
+			comfirmedpassword: "",
 		};
 	},
 	methods: {
@@ -324,7 +459,7 @@ export default {
 				account: this.account,
 				did: this.did,
 				password: this.password,
-				confirmedPassword: this.password,
+				confirmedPassword: this.comfirmedpassword,
 			};
 			this.$store.dispatch("addEmployee", data).then((res) => {
 				this.reload();
@@ -371,8 +506,33 @@ export default {
 </script>
 
 <style scoped>
+* {
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
 .hello {
 	overflow-y: hidden;
+}
+.btnrow {
+	margin-bottom: 5%;
+}
+.submitbtn {
+	width: 100%;
+}
+#selectForm >>> .el-form-item__label {
+	font-size: 18px;
+}
+.detail-nav > div {
+	font-size: 20px;
+	margin-top: 10%;
+	margin-left: 10%;
+}
+.detail-item > div {
+	font-size: 20px;
+	margin-top: 4.6%;
+}
+.btn-sm {
+	margin-left: 0.3vw;
 }
 /* * {
     margin: 0 auto;

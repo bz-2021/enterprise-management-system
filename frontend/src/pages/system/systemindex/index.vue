@@ -183,11 +183,11 @@ export default {
 	margin-left: 10%;
 }
 .main_menu {
-	margin-top: 3%;
-	margin-left: 5%;
+	margin-top: 0%;
+	margin-right: 0%;
 }
 .blank {
-	height: 485px;
+	height: 335px;
 }
 .btnrow {
 	margin-bottom: 5%;

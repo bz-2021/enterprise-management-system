@@ -14,5 +14,5 @@ public class Department {
     private Integer did;
     private String dName;
     private Integer dLevel;
-    private Integer dRemark;
+    private String dRemark;
 }
