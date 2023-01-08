@@ -1,3 +1,10 @@
+### [项目预览入口](http://114.115.240.201/login) ###
+#### 账号：`Guest` ####
+#### 密码：`123456` ####
+
+![登陆页面](frontend/src/assets/images/demo1.png)
+![管理页面](frontend/src/assets/images/demo2.png)
+
 ### 后端配置 ###
 
 ##### Java版本：11 #####
