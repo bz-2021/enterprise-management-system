@@ -112,6 +112,7 @@
 								</el-form-item>
 								<el-form-item>
 									<button
+										id = "sendemailbtn"
 										style="width: 150%; margin-left: 60px"
 										type="button"
 										class="btn btn-outline-primary btn-md"
@@ -237,8 +238,16 @@ export default {
 			this.forget = false;
 		},
 		sendCode() {
+			if(document.querySelector("#sendemailbtn").textContent == "发送中..."){
+				alert("请勿重复发送")
+				return ;
+			}
 			if (this.e_mail) {
 				this.$store.dispatch("getCode", this.e_mail);
+				document.querySelector("#sendemailbtn").textContent = "发送中...";
+				setInterval(()=>{
+					document.querySelector("#sendemailbtn").textContent = "发送验证码";
+				}, 5000);
 			} else {
 				alert("邮箱不能为空");
 			}

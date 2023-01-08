@@ -145,7 +145,7 @@ const actions = {
             alert("发送成功");
             return 'ok'
         } else {
-            alert(result);
+            alert(result.error_message);
             return Promise.reject(new Error('faile'))
         }
             

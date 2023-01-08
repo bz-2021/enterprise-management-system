@@ -1,14 +1,20 @@
-spring :
+spring:
   mail:
+    port: 465
     host: smtp.sina.com
     username: oldcattle2022@sina.com
     password: 19b47d9a8407cf21
-    port: 25
-    default-encoding: UTF-8
+    default-encoding: utf-8
+    protocol: smtp
     properties:
       mail:
-        smth:
-        auth: true
-        strttls:
-          enable: true
-          required: true
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+            socketFactory:
+              port: 465
+              class: javax.net.ssl.SSLSocketFactory
