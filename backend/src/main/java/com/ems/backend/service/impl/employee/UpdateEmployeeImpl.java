@@ -26,6 +26,11 @@ public class UpdateEmployeeImpl implements UpdateEmployeeService {
 
         Map<String, String> map = new HashMap<>();
 
+        if(employee.getId() == 25){
+            map.put("error_message", "游客身份不支持修改数据");
+            return map;
+        }
+
         int ToBeUpdatedId = Integer.parseInt(data.get("employee_id"));
 
         Employee ToBeUpdated = employeeMapper.selectById(ToBeUpdatedId);

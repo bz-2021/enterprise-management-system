@@ -90,6 +90,7 @@
 								type="button"
 								class="btn btn-primary btn-lg submitbtn"
 								@click="submit"
+								data-bs-dismiss="modal"
 								>提交
 							</button>
 						</div>
@@ -140,7 +141,7 @@ export default {
 	},
 	methods: {
 		logout() {
-			localStorage.removeItem("TOKEN");
+			sessionStorage.removeItem("TOKEN");
 			window.location.href = window.location.href;
 		},
 		modify() {

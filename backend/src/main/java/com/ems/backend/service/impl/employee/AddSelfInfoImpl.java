@@ -20,6 +20,10 @@ public class AddSelfInfoImpl implements AddSelfInfoService {
     public Map<String, String> addInfo(Map<String, String> data) {
         Map<String, String> map = new HashMap<>();
         Employee employee = AuthorizationUtil.getEmployee();
+        if(employee.getId() == 25){
+            map.put("error_message", "游客身份不支持修改数据");
+            return map;
+        }
         String photo = data.get("photo");
         String ethnicity = data.get("ethnicity");
         String politicalFace = data.get("politicalFace");

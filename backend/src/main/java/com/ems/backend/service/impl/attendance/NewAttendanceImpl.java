@@ -24,6 +24,10 @@ public class NewAttendanceImpl implements NewAttendance {
     public Map<String, String> newAttendance(String status, String id) {
         Employee employee = AuthorizationUtil.getEmployee();
         Map<String,String> map = new HashMap<>();
+        if(employee.getId() == 25){
+            map.put("error_message", "游客身份不支持修改数据");
+            return map;
+        }
         int eid;
         try {
             eid = Integer.parseInt(id);

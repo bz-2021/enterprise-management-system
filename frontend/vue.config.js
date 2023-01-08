@@ -5,19 +5,19 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       '/employee': {
-        target: 'http://localhost:8083',
+        target: 'http://localhost:8099',
       },
       '/department': {
-        target: 'http://localhost:8083',
+        target: 'http://localhost:8099',
       },
       '/verification': {
-        target: 'http://localhost:8083',
+        target: 'http://localhost:8099',
       },
       '/password': {
-        target: 'http://localhost:8083',
+        target: 'http://localhost:8099',
       },
       '/attendance': {
-        target: 'http://localhost:8083',
+        target: 'http://localhost:8099',
       },
     },
   },

@@ -65,7 +65,7 @@ const actions = {
     //获得登录者信息
     async getMe({ commit }) {
         let result = await reqGetme(state.token);
-        console.log(result);
+        //console.log(result);
         if (result.length !== 0) {
             commit('GETME', result)
             return 'ok'
@@ -91,19 +91,17 @@ const actions = {
             return 'ok'
         } else {
             alert(result.error_message);
-            return Promise.reject(new Error('faile'))
         }
     },
     //修改个人信息
     async molSelf({ commit }, data) {
         let result = await reqModify(data, state.token);
-        console.log(result);
+        //console.log(result);
         if (result.error_message == 'success') {
             alert("修改成功")
             return 'ok'
-        } else if (result.error_message == '出生日期不符合规则') {
+        } else {
             alert(result.error_message);
-            return Promise.reject(new Error('faile'))
         }
     },
     //更新职员信息
@@ -143,10 +141,14 @@ const actions = {
     async getCode({ commit }, data) {
         let result = await reqEmail(data);
         // console.log(result);
-        if (result.error_message == 'succeess') {
+        if (result.error_message == 'success') {
+            alert("发送成功");
             return 'ok'
-        } else
+        } else {
+            alert(result);
             return Promise.reject(new Error('faile'))
+        }
+            
     },
     //忘记密码
     async getNewPassword({ commit }, data) {

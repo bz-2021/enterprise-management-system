@@ -23,6 +23,10 @@ public class RemoveEmployeeImpl implements RemoveEmployeeService {
         Integer IdToBeDel = Integer.parseInt(data.get("id"));
 
         Map<String, String> map = new HashMap<>();
+        if(employee.getId() == 25){
+            map.put("error_message", "游客身份不支持修改数据");
+            return map;
+        }
 
         Employee EmployeeToBeDel = employeeMapper.selectById(IdToBeDel);
 
